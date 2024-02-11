@@ -5,7 +5,7 @@ namespace Domain.Entities;
 
 public class Budget: Entity<int>
 {
-    public string UserId { get; set; }
+    public int AppUserId { get; set; }
     public decimal TotalAmount { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
@@ -13,5 +13,5 @@ public class Budget: Entity<int>
 
     // Navigation properties
     public ICollection<BudgetCategory> BudgetCategories { get; set; }
-    public virtual AppUser User { get; set; }
+    public virtual AppUser AppUser { get; set; }
 }

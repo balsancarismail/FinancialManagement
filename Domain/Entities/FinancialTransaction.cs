@@ -5,7 +5,7 @@ namespace Domain.Entities;
 
 public class FinancialTransaction : Entity<int>
 {
-    public string UserId { get; set; }
+    public int AppUserId { get; set; }
     public decimal Amount { get; set; }
     public DateTime Date { get; set; }
     public int CategoryId { get; set; }
@@ -13,6 +13,6 @@ public class FinancialTransaction : Entity<int>
 
     // Navigation properties
     public virtual Category Category { get; set; }
-    public virtual AppUser User { get; set; }
+    public virtual AppUser AppUser { get; set; }
 
 }

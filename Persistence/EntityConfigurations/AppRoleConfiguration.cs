@@ -22,7 +22,7 @@ public class AppRoleConfiguration : IEntityTypeConfiguration<AppRole>
             new() { Id = 1, Name = "Manager", NormalizedName = "MANAGER" },
             new() { Id = 2, Name = "Accountant", NormalizedName = "ACCOUNTANT" },
             new() { Id = 3, Name = "FinancialAnalyst", NormalizedName = "FINANCIALANALYST" },
-            new() { Id = 4, Name = "User", NormalizedName = "USER" },
+            new() { Id = 4, Name = "AppUser", NormalizedName = "USER" },
         };
         return roles;
     }

@@ -200,7 +200,7 @@ namespace Persistence.Migrations
                     { 1, null, "Manager", "MANAGER" },
                     { 2, null, "Accountant", "ACCOUNTANT" },
                     { 3, null, "FinancialAnalyst", "FINANCIALANALYST" },
-                    { 4, null, "User", "USER" }
+                    { 4, null, "AppUser", "USER" }
                 });
 
             migrationBuilder.CreateIndex(
