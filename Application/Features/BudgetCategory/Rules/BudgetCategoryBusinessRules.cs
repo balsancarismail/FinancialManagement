@@ -1,12 +1,11 @@
 ﻿using Application.Features.BudgetCategory.Constants;
 using Core.CrossCuttingConcerns.Exceptions.Types;
-using Domain.Entities;
 
 namespace Application.Features.BudgetCategory.Rules;
 
 public class BudgetCategoryBusinessRules
 {
-    public void CategoryMustBeExists(Category category)
+    public void CategoryMustBeExists(Domain.Entities.Category category)
     {
         // Check if category exists
         if (category is null) throw new BusinessException(BudgetCategoryMessages.CategoryNotFound);
