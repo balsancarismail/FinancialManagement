@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using Application.Services.BudgetService;
+using Application.Services.CategoryService;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
@@ -55,7 +57,8 @@ public static class ApplicationServiceRegistration
         //services.AddSingleton<LoggerServiceBase,FileLogger>();
         services.AddSingleton<LoggerServiceBase, MsSqlLogger>();
 
-        //var res = services.FirstOrDefault(s => s.ImplementationType == typeof(UserManager<AppUser>));
+        var res = services.FirstOrDefault(s => s.ImplementationType == typeof(BudgetManager));
+        var re2s = services.FirstOrDefault(s => s.ImplementationType == typeof(CategoryManager));
         services.AddDistributedMemoryCache();
 
         /*services.AddStackExchangeRedisCache(options =>

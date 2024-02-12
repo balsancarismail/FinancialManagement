@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.1" />
     <PackageReference Include="Scrutor" Version="4.2.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.3.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +38,14 @@
     <Reference Include="Core.Security">
       <HintPath>..\libs\net8.0\Core.Security.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\BudgetCategory\Profiles\" />
+    <Folder Include="Features\BudgetCategory\Queries\" />
+    <Folder Include="Features\Budget\Rules\" />
+    <Folder Include="Features\Budget\Queries\" />
+    <Folder Include="Services\CategoryService\" />
   </ItemGroup>
 
 </Project>

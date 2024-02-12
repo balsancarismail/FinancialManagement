@@ -2,6 +2,8 @@
 
 public static class ConstantRoles
 {
-    public static string ADMIN = "Admin";
-    public static string USER = "AppUser";
+    public static string MANAGER = "Manager";
+    public static string ACCOUNTANT = "Accountant";
+    public static string FINANCIALANALYST = "FinancialAnalyst";
+    public static string USER = "User";
 }

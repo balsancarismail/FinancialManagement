@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Core.Security.Entities;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,7 +13,6 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
 
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
         builder.Property(b => b.AppUserId).HasColumnName("AppUserId").IsRequired();
-        builder.Property(b => b.TotalAmount).HasColumnName("TotalAmount").HasPrecision(16, 2).IsRequired();
         builder.Property(b => b.StartDate).HasColumnName("StartDate").IsRequired();
         builder.Property(b => b.EndDate).HasColumnName("EndDate").IsRequired();
         builder.Property(b => b.CreatedDate).HasColumnName("CreatedDate").IsRequired();
@@ -24,5 +24,18 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
         builder.HasOne(b => b.AppUser);
         builder.HasMany(b => b.BudgetCategories)
             .WithOne(b => b.Budget).OnDelete(DeleteBehavior.NoAction);
+
+        builder.HasData(
+            [
+                new Budget
+                {
+                    Id = 1,
+                    AppUserId = 2,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddMonths(1),
+                    CreatedDate = DateTime.Now
+                }
+            ]
+        );
     }
 }

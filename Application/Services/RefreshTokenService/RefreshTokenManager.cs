@@ -5,7 +5,7 @@ using Core.Security.Entities;
 using Core.Security.JWT;
 using Microsoft.AspNetCore.Identity;
 
-namespace Application.Services.RefreshToken;
+namespace Application.Services.RefreshTokenService;
 
 public class RefreshTokenManager(IRefreshTokenRepository refreshTokenRepository, ITokenHelper tokenHelper, UserManager<AppUser> userManager) : IRefreshTokenService
 {

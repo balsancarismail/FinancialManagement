@@ -1,6 +1,5 @@
 ﻿using Application.Features.Auth.Commands.CreateAuthenticationToken;
 using Application.Features.Auth.Queries.GetAuthenticationTokenByRefreshToken;
-using Application.Features.Auth.Queries.GetAuthTokenByRefreshToken;
 using Core.Security.JWT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

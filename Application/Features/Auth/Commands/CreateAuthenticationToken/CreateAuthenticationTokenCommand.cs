@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using Application.Features.Auth.Constants;
-using Application.Services.RefreshToken;
+using Application.Services.RefreshTokenService;
 using Core.Application.Pipelines.Logging;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Core.Security.Entities;

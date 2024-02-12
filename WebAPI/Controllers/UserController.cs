@@ -5,7 +5,7 @@ namespace WebAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class UserControllers : BaseController
+public class UserController : BaseController
 {
     [HttpPost("register")]
     public async Task<ActionResult<CreatedUserResponse>> Register([FromBody] CreateUserCommand command)

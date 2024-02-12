@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -11,9 +12,11 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    partial class BaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240212114821_seedDataForTest")]
+    partial class seedDataForTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,6 +251,11 @@ namespace Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("StartDate");
 
+                    b.Property<decimal>("TotalAmount")
+                        .HasPrecision(16, 2)
+                        .HasColumnType("decimal(16,2)")
+                        .HasColumnName("TotalAmount");
+
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("UpdatedDate");
@@ -263,9 +271,10 @@ namespace Persistence.Migrations
                         {
                             Id = 1,
                             AppUserId = 2,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 350, DateTimeKind.Local).AddTicks(6060),
-                            EndDate = new DateTime(2024, 3, 12, 17, 26, 54, 350, DateTimeKind.Local).AddTicks(6036),
-                            StartDate = new DateTime(2024, 2, 12, 17, 26, 54, 350, DateTimeKind.Local).AddTicks(6029),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 683, DateTimeKind.Local).AddTicks(9441),
+                            EndDate = new DateTime(2024, 3, 12, 14, 48, 20, 683, DateTimeKind.Local).AddTicks(9421),
+                            StartDate = new DateTime(2024, 2, 12, 14, 48, 20, 683, DateTimeKind.Local).AddTicks(9418),
+                            TotalAmount = 3000m,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -317,7 +326,7 @@ namespace Persistence.Migrations
                             AllocatedAmount = 1000m,
                             BudgetId = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 350, DateTimeKind.Local).AddTicks(1050),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 683, DateTimeKind.Local).AddTicks(5403),
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -326,7 +335,7 @@ namespace Persistence.Migrations
                             AllocatedAmount = 500m,
                             BudgetId = 1,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 350, DateTimeKind.Local).AddTicks(1066),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 683, DateTimeKind.Local).AddTicks(5416),
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -335,7 +344,7 @@ namespace Persistence.Migrations
                             AllocatedAmount = 300m,
                             BudgetId = 1,
                             CategoryId = 3,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 350, DateTimeKind.Local).AddTicks(1067),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 683, DateTimeKind.Local).AddTicks(5418),
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -344,7 +353,7 @@ namespace Persistence.Migrations
                             AllocatedAmount = 1000m,
                             BudgetId = 1,
                             CategoryId = 4,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 350, DateTimeKind.Local).AddTicks(1068),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 683, DateTimeKind.Local).AddTicks(5419),
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -353,7 +362,7 @@ namespace Persistence.Migrations
                             AllocatedAmount = 200m,
                             BudgetId = 1,
                             CategoryId = 5,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 350, DateTimeKind.Local).AddTicks(1070),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 683, DateTimeKind.Local).AddTicks(5420),
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -362,7 +371,7 @@ namespace Persistence.Migrations
                             AllocatedAmount = 200m,
                             BudgetId = 1,
                             CategoryId = 6,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 350, DateTimeKind.Local).AddTicks(1071),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 683, DateTimeKind.Local).AddTicks(5421),
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -406,7 +415,7 @@ namespace Persistence.Migrations
                         {
                             Id = 1,
                             CategoryType = 0,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 351, DateTimeKind.Local).AddTicks(616),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 684, DateTimeKind.Local).AddTicks(3506),
                             Name = "Salary",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -414,7 +423,7 @@ namespace Persistence.Migrations
                         {
                             Id = 2,
                             CategoryType = 0,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 351, DateTimeKind.Local).AddTicks(621),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 684, DateTimeKind.Local).AddTicks(3511),
                             Name = "Investment",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -422,7 +431,7 @@ namespace Persistence.Migrations
                         {
                             Id = 3,
                             CategoryType = 1,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 351, DateTimeKind.Local).AddTicks(623),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 684, DateTimeKind.Local).AddTicks(3513),
                             Name = "Groceries",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -430,7 +439,7 @@ namespace Persistence.Migrations
                         {
                             Id = 4,
                             CategoryType = 1,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 351, DateTimeKind.Local).AddTicks(624),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 684, DateTimeKind.Local).AddTicks(3514),
                             Name = "Rent",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -438,7 +447,7 @@ namespace Persistence.Migrations
                         {
                             Id = 5,
                             CategoryType = 1,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 351, DateTimeKind.Local).AddTicks(625),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 684, DateTimeKind.Local).AddTicks(3515),
                             Name = "Utilities",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -446,7 +455,7 @@ namespace Persistence.Migrations
                         {
                             Id = 6,
                             CategoryType = 1,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 351, DateTimeKind.Local).AddTicks(626),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 684, DateTimeKind.Local).AddTicks(3516),
                             Name = "Entertainment",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -454,7 +463,7 @@ namespace Persistence.Migrations
                         {
                             Id = 7,
                             CategoryType = 1,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 351, DateTimeKind.Local).AddTicks(627),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 684, DateTimeKind.Local).AddTicks(3517),
                             Name = "Transportation",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -462,7 +471,7 @@ namespace Persistence.Migrations
                         {
                             Id = 8,
                             CategoryType = 1,
-                            CreatedDate = new DateTime(2024, 2, 12, 17, 26, 54, 351, DateTimeKind.Local).AddTicks(628),
+                            CreatedDate = new DateTime(2024, 2, 12, 14, 48, 20, 684, DateTimeKind.Local).AddTicks(3518),
                             Name = "Healthcare",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });

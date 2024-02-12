@@ -1,4 +1,4 @@
-﻿namespace Application.Services.RefreshToken;
+﻿namespace Application.Services.RefreshTokenService;
 
 public interface IRefreshTokenService
 {

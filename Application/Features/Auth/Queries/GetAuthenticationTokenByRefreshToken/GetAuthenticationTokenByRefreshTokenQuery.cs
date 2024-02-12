@@ -1,5 +1,4 @@
 ﻿using Application.Features.Auth.Constants;
-using Application.Features.Auth.Queries.GetAuthenticationTokenByRefreshToken;
 using Application.Services.Repositories;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Logging;
@@ -10,7 +9,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using static Application.Features.Auth.Constants.ConstantRoles;
 
-namespace Application.Features.Auth.Queries.GetAuthTokenByRefreshToken;
+namespace Application.Features.Auth.Queries.GetAuthenticationTokenByRefreshToken;
 
 public class GetAuthenticationTokenByRefreshTokenQuery : IRequest<GetAuthenticationTokenByRefreshTokenResponse>,
     ILoggableRequest, ISecuredRequest
