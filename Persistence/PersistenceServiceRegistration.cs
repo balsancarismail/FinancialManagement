@@ -1,7 +1,5 @@
-﻿
-using Application.Services.Repositories;
+﻿using Application.Services.Repositories;
 using Core.Security.Entities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,9 +17,7 @@ public static class PersistenceServiceRegistration
             options.UseSqlServer(configuration.GetConnectionString("RentACar"));
         });
 
-        services.AddIdentityCore<AppUser>(options =>
-        {
-        }).AddRoles<AppRole>().AddEntityFrameworkStores<BaseDbContext>();
+        services.AddIdentityCore<AppUser>(options => { }).AddRoles<AppRole>().AddEntityFrameworkStores<BaseDbContext>();
 
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
         services.AddScoped<IBudgetRepository, BudgetRepository>();
@@ -32,6 +28,5 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IInvestmentPortfolioRepository, InvestmentPortfolioRepository>();
 
         //var res = services.FirstOrDefault(s => s.ImplementationType == typeof(RefreshTokenRepository));
-
     }
 }

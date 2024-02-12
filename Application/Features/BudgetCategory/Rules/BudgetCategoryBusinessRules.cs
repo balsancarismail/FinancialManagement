@@ -9,26 +9,17 @@ public class BudgetCategoryBusinessRules
     public void CategoryMustBeExists(Category category)
     {
         // Check if category exists
-        if (category is null)
-        {
-            throw new BusinessException(BudgetCategoryMessages.CategoryNotFound);
-        }
+        if (category is null) throw new BusinessException(BudgetCategoryMessages.CategoryNotFound);
     }
 
     public void BudgetMustBeExists(Domain.Entities.Budget budget)
     {
         // Check if category exists
-        if (budget is null)
-        {
-            throw new BusinessException(BudgetCategoryMessages.BudgetNotFound);
-        }
+        if (budget is null) throw new BusinessException(BudgetCategoryMessages.BudgetNotFound);
     }
 
     public void BudgetCategoryMustBeExists(Domain.Entities.BudgetCategory budgetCategory)
     {
-        if (budgetCategory is null)
-        {
-            throw new BusinessException(BudgetCategoryMessages.BudgetCategoryNotFound);
-        }
+        if (budgetCategory is null) throw new BusinessException(BudgetCategoryMessages.BudgetCategoryNotFound);
     }
 }

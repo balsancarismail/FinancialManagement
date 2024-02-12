@@ -8,9 +8,7 @@ using Core.Application.Pipelines.Transaction;
 using Core.Application.Pipelines.Validation;
 using Core.CrossCuttingConcerns.Serilog;
 using Core.CrossCuttingConcerns.Serilog.Logger;
-using Core.Security.Entities;
 using FluentValidation;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -33,15 +31,15 @@ public static class ApplicationServiceRegistration
             .WithScopedLifetime()
         );
         services.Scan(scan => scan
-                   .FromAssemblies(Assembly.GetExecutingAssembly())
-                   .AddClasses(classes => classes.Where(type =>
-                   {
+            .FromAssemblies(Assembly.GetExecutingAssembly())
+            .AddClasses(classes => classes.Where(type =>
+            {
                 var name = type.Name;
                 return name.EndsWith("Manager");
             }))
-                   .AsImplementedInterfaces()
-                   .WithScopedLifetime()
-               );
+            .AsImplementedInterfaces()
+            .WithScopedLifetime()
+        );
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(
             configuration =>

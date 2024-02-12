@@ -6,7 +6,6 @@ namespace Application.Features.Budget.Rules;
 
 public class BudgetBusinessRules
 {
-
     private readonly IBudgetRepository _budgetRepository;
 
     public BudgetBusinessRules(IBudgetRepository budgetRepository)
@@ -16,10 +15,8 @@ public class BudgetBusinessRules
 
     public async Task IsBudgetExists(int id, CancellationToken cancellationToken)
     {
-        var budget = await _budgetRepository.GetAsync(predicate: b => b.Id == id, enableTracking: false, cancellationToken:cancellationToken);
-        if (budget == null)
-        {
-            throw new BusinessException(BudgetMessages.BudgetNotFound);
-        }
+        var budget = await _budgetRepository.GetAsync(b => b.Id == id, enableTracking: false,
+            cancellationToken: cancellationToken);
+        if (budget == null) throw new BusinessException(BudgetMessages.BudgetNotFound);
     }
 }

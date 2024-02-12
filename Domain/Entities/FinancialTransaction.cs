@@ -14,5 +14,4 @@ public class FinancialTransaction : Entity<int>
     // Navigation properties
     public virtual Category Category { get; set; }
     public virtual AppUser AppUser { get; set; }
-
 }

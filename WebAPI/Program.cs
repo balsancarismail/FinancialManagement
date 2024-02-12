@@ -22,7 +22,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.RegisterExceptionHandler();
 builder.Services.AddSecurityServices();
 
-TokenOptions? tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -42,17 +42,14 @@ builder.Services
 
 builder.Services.AddCors(
     opt =>
-        opt.AddDefaultPolicy(p =>
-        {
-            p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-        })
+        opt.AddDefaultPolicy(p => { p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); })
 );
 
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.AddSecurityDefinition(
-        name: "Bearer",
-        securityScheme: new OpenApiSecurityScheme
+        "Bearer",
+        new OpenApiSecurityScheme
         {
             Name = "Authorization",
             Type = SecuritySchemeType.ApiKey,

@@ -8,5 +8,4 @@ namespace Persistence.Repositories;
 public class InvestmentRepository(BaseDbContext context)
     : EfRepositoryBase<Investment, int, BaseDbContext>(context), IInvestmentRepository
 {
-
 }

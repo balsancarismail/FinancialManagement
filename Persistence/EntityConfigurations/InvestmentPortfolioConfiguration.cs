@@ -10,13 +10,13 @@ public class InvestmentPortfolioConfiguration : IEntityTypeConfiguration<Investm
     {
         builder.ToTable("InvestmentPortfolio").HasKey(ip => ip.Id);
 
-        builder.Property(ip=> ip.Id).HasColumnName("Id").IsRequired();
-        builder.Property(ip=> ip.AppUserId).HasColumnName("AppUserId").IsRequired();
-        builder.Property(ip=> ip.Name).HasColumnName("Name").IsRequired();
-        builder.Property(ip=> ip.Description).HasColumnName("Description").IsRequired();
-        builder.Property(ip=> ip.CreatedDate).HasColumnName("CreatedDate").IsRequired();
-        builder.Property(ip=> ip.UpdatedDate).HasColumnName("UpdatedDate");
-        builder.Property(ip=> ip.DeletedDate).HasColumnName("DeletedDate");
+        builder.Property(ip => ip.Id).HasColumnName("Id").IsRequired();
+        builder.Property(ip => ip.AppUserId).HasColumnName("AppUserId").IsRequired();
+        builder.Property(ip => ip.Name).HasColumnName("Name").IsRequired();
+        builder.Property(ip => ip.Description).HasColumnName("Description").IsRequired();
+        builder.Property(ip => ip.CreatedDate).HasColumnName("CreatedDate").IsRequired();
+        builder.Property(ip => ip.UpdatedDate).HasColumnName("UpdatedDate");
+        builder.Property(ip => ip.DeletedDate).HasColumnName("DeletedDate");
 
         builder.HasQueryFilter(ip => !ip.DeletedDate.HasValue);
 

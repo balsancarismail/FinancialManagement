@@ -51,7 +51,9 @@ public class CreateUserCommand : IRequest<CreatedUserResponse>, ITransactionalRe
 
             if (identityResult.Succeeded)
             {
-                var createdUser = await userManager.Users.SingleOrDefaultAsync(x => x.Email == request.Email.Trim().Normalize(), cancellationToken: cancellationToken);
+                var createdUser =
+                    await userManager.Users.SingleOrDefaultAsync(x => x.Email == request.Email.Trim().Normalize(),
+                        cancellationToken);
                 if (createdUser == null) throw new BusinessException(AuthMessages.RegistrationFailed);
                 await userManager.AddToRoleAsync(createdUser, USER);
                 var response = mapper.Map<CreatedUserResponse>(createdUser);

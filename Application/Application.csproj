@@ -45,6 +45,7 @@
     <Folder Include="Features\BudgetCategory\Queries\" />
     <Folder Include="Features\Budget\Rules\" />
     <Folder Include="Features\Budget\Queries\" />
+    <Folder Include="Features\InvestmentPortfolio\Rules\" />
     <Folder Include="Services\CategoryService\" />
   </ItemGroup>
 

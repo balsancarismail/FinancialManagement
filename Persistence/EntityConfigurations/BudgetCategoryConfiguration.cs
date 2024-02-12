@@ -34,7 +34,7 @@ public class BudgetCategoryConfiguration : IEntityTypeConfiguration<BudgetCatego
                 new BudgetCategory
                     { Id = 5, BudgetId = 1, CategoryId = 5, AllocatedAmount = 200, CreatedDate = DateTime.Now },
                 new BudgetCategory
-                    { Id = 6, BudgetId = 1, CategoryId = 6, AllocatedAmount = 200, CreatedDate = DateTime.Now },
+                    { Id = 6, BudgetId = 1, CategoryId = 6, AllocatedAmount = 200, CreatedDate = DateTime.Now }
             ]
         );
     }

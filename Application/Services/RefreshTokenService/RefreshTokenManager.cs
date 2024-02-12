@@ -7,7 +7,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Application.Services.RefreshTokenService;
 
-public class RefreshTokenManager(IRefreshTokenRepository refreshTokenRepository, ITokenHelper tokenHelper, UserManager<AppUser> userManager) : IRefreshTokenService
+public class RefreshTokenManager(
+    IRefreshTokenRepository refreshTokenRepository,
+    ITokenHelper tokenHelper,
+    UserManager<AppUser> userManager) : IRefreshTokenService
 {
     public async Task AddRefreshTokenAsync(string token, int userId, DateTime exp, string remoteIpAddress)
     {
@@ -15,13 +18,12 @@ public class RefreshTokenManager(IRefreshTokenRepository refreshTokenRepository,
         if (user is null)
             throw new AuthorizationException(AuthMessages.UserDontExists);
 
-        var refreshToken = new Core.Security.Entities.RefreshToken
+        var refreshToken = new RefreshToken
         {
             Token = token,
             UserId = userId,
             Expiration = exp,
             AppUser = user
-            
         };
         await refreshTokenRepository.AddAsync(refreshToken);
     }

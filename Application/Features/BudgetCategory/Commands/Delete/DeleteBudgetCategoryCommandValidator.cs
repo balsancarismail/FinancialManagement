@@ -1,5 +1,4 @@
-﻿using Application.Features.BudgetCategory.Commands.Create;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Application.Features.BudgetCategory.Commands.Delete;
 

@@ -7,6 +7,6 @@ public class CategoryManager(ICategoryRepository categoryRepository) : ICategory
 {
     public async Task<Category> GetCategoryByIdAsync(int categoryId, CancellationToken cancellationToken)
     {
-        return await categoryRepository.GetAsync(predicate: c => c.Id == categoryId, cancellationToken: cancellationToken);
+        return await categoryRepository.GetAsync(c => c.Id == categoryId, cancellationToken: cancellationToken);
     }
 }

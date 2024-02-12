@@ -22,11 +22,12 @@ public class GetAuthenticationTokenByRefreshTokenQuery : IRequest<GetAuthenticat
         : IRequestHandler<GetAuthenticationTokenByRefreshTokenQuery, GetAuthenticationTokenByRefreshTokenResponse>
 
     {
-        private readonly UserManager<AppUser> _userManager ;
-        private readonly ITokenHelper _tokenHelper ;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
+        private readonly ITokenHelper _tokenHelper;
+        private readonly UserManager<AppUser> _userManager;
 
-        public GetAuthenticationTokenByRefreshTokenQueryHandler(UserManager<AppUser> userManager, ITokenHelper tokenHelper, IRefreshTokenRepository refreshTokenRepository)
+        public GetAuthenticationTokenByRefreshTokenQueryHandler(UserManager<AppUser> userManager,
+            ITokenHelper tokenHelper, IRefreshTokenRepository refreshTokenRepository)
         {
             _userManager = userManager;
             _tokenHelper = tokenHelper;

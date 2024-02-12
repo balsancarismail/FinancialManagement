@@ -1,4 +1,5 @@
-﻿using Application.Features.BudgetCategory.Rules;
+﻿using System.Text.Json.Serialization;
+using Application.Features.BudgetCategory.Rules;
 using Application.Services.BudgetService;
 using Application.Services.CategoryService;
 using Application.Services.Repositories;
@@ -7,25 +8,25 @@ using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Transaction;
 using MediatR;
-using System.Text.Json.Serialization;
 using static Application.Features.Auth.Constants.ConstantRoles;
 
 
 namespace Application.Features.BudgetCategory.Commands.Create;
 
-public class CreateBudgetCategoryCommand : IRequest<CreateBudgetCategoryResponse>, ICacheRemoverRequest, ISecuredRequest, ITransactionalRequest, ILoggableRequest
+public class CreateBudgetCategoryCommand : IRequest<CreateBudgetCategoryResponse>, ICacheRemoverRequest,
+    ISecuredRequest, ITransactionalRequest, ILoggableRequest
 {
-    [JsonIgnore]
-    public string CacheKey => $"";
-    [JsonIgnore]
-    public bool BypassCache { get; }
-    [JsonIgnore]
-    public string CacheGroupKey => $"GetBudgetCategory";
-    [JsonIgnore]
-    public string[] Roles => new string[] { USER };
     public int CategoryId { get; set; }
     public int BudgetId { get; set; }
     public decimal AllocatedAmount { get; set; }
+
+    [JsonIgnore] public string CacheKey => "";
+
+    [JsonIgnore] public bool BypassCache { get; }
+
+    [JsonIgnore] public string CacheGroupKey => "GetBudgetCategory";
+
+    [JsonIgnore] public string[] Roles => new[] { USER };
 
     public class
         CreateBudgetCategoryCommandHandler(
@@ -55,5 +56,4 @@ public class CreateBudgetCategoryCommand : IRequest<CreateBudgetCategoryResponse
             return new CreateBudgetCategoryResponse();
         }
     }
-
 }

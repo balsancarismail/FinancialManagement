@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class BudgetCategory: Entity<int>
+public class BudgetCategory : Entity<int>
 {
     public int BudgetId { get; set; }
     public int CategoryId { get; set; }

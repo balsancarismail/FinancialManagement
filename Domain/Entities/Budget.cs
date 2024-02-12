@@ -3,7 +3,7 @@ using Core.Security.Entities;
 
 namespace Domain.Entities;
 
-public class Budget: Entity<int>
+public class Budget : Entity<int>
 {
     public int AppUserId { get; set; }
     public DateTime StartDate { get; set; }

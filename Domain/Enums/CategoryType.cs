@@ -2,6 +2,6 @@
 
 public enum CategoryType
 {
-    Income,  // Gelir
-    Expense  // Gider
+    Income, // Gelir
+    Expense // Gider
 }

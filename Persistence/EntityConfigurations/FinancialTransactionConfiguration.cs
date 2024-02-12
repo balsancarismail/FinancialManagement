@@ -13,7 +13,7 @@ public class FinancialTransactionConfiguration : IEntityTypeConfiguration<Financ
         builder.Property(ft => ft.Id).HasColumnName("Id").IsRequired();
         builder.Property(ft => ft.AppUserId).HasColumnName("AppUserId").IsRequired();
         builder.Property(ft => ft.CategoryId).HasColumnName("CategoryId").IsRequired();
-        builder.Property(ft => ft.Amount).HasColumnName("Amount").HasPrecision(16,2).IsRequired();
+        builder.Property(ft => ft.Amount).HasColumnName("Amount").HasPrecision(16, 2).IsRequired();
         builder.Property(ft => ft.Description).HasColumnName("Description").IsRequired();
         builder.Property(ft => ft.Date).HasColumnName("Date").IsRequired();
         builder.Property(ft => ft.CreatedDate).HasColumnName("CreatedDate").IsRequired();

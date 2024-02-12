@@ -14,7 +14,8 @@ public class InvestmentConfiguration : IEntityTypeConfiguration<Investment>
         builder.Property(i => i.PortfolioId).HasColumnName("PortfolioId").IsRequired();
         builder.Property(i => i.InvestmentType).HasColumnName("InvestmentType").IsRequired();
         builder.Property(i => i.Amount).HasColumnName("Amount").HasPrecision(16, 2).IsRequired();
-        builder.Property(i => i.RandomProfitOrLoss).HasColumnName("RandomProfitOrLoss").HasPrecision(16, 2).IsRequired();
+        builder.Property(i => i.RandomProfitOrLoss).HasColumnName("RandomProfitOrLoss").HasPrecision(16, 2)
+            .IsRequired();
         builder.Property(i => i.PurchaseDate).HasColumnName("PurchaseDate").IsRequired();
         builder.Property(i => i.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(i => i.UpdatedDate).HasColumnName("UpdatedDate");

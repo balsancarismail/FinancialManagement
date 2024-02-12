@@ -1,5 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Application.Features.Budget.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -15,31 +14,33 @@ using static Application.Features.Auth.Constants.ConstantRoles;
 
 namespace Application.Features.Budget.Commands.Create;
 
-public class CreateBudgetCommand : IRequest<CreateBudgetResponse>, ICacheRemoverRequest, ISecuredRequest, ITransactionalRequest, ILoggableRequest
+public class CreateBudgetCommand : IRequest<CreateBudgetResponse>, ICacheRemoverRequest, ISecuredRequest,
+    ITransactionalRequest, ILoggableRequest
 {
-    [JsonIgnore]
-    public string CacheKey => $"";
-    [JsonIgnore]
-    public bool BypassCache { get; }
-    [JsonIgnore]
-    public string CacheGroupKey => $"GetBudget";
-    [JsonIgnore]
-    public string[] Roles => new string[] { USER };
-
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
 
+    [JsonIgnore] public string CacheKey => "";
 
-    public class CreateBudgetCommandHandler: IRequestHandler<CreateBudgetCommand, CreateBudgetResponse>
+    [JsonIgnore] public bool BypassCache { get; }
+
+    [JsonIgnore] public string CacheGroupKey => "GetBudget";
+
+    [JsonIgnore] public string[] Roles => new[] { USER };
+
+
+    public class CreateBudgetCommandHandler : IRequestHandler<CreateBudgetCommand, CreateBudgetResponse>
     {
-
-        private readonly IMapper _mapper;
         private readonly IBudgetRepository _budgetRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
+
+        private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
         private readonly string emailSchema = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress";
 
-        public CreateBudgetCommandHandler(IMapper mapper, IBudgetRepository budgetRepository, IHttpContextAccessor httpContextAccessor, BudgetBusinessRules budgetBusinessRules, UserManager<AppUser> userManager)
+        public CreateBudgetCommandHandler(IMapper mapper, IBudgetRepository budgetRepository,
+            IHttpContextAccessor httpContextAccessor, BudgetBusinessRules budgetBusinessRules,
+            UserManager<AppUser> userManager)
         {
             _mapper = mapper;
             _budgetRepository = budgetRepository;
@@ -49,9 +50,9 @@ public class CreateBudgetCommand : IRequest<CreateBudgetResponse>, ICacheRemover
 
         public async Task<CreateBudgetResponse> Handle(CreateBudgetCommand request, CancellationToken cancellationToken)
         {
-
             var budget = _mapper.Map<Domain.Entities.Budget>(request);
-            var userMail = _httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(predicate: c => c.Type == emailSchema)!.Value;
+            var userMail = _httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(c => c.Type == emailSchema)!
+                .Value;
 
             var user = await _userManager.FindByEmailAsync(userMail);
 
@@ -62,6 +63,4 @@ public class CreateBudgetCommand : IRequest<CreateBudgetResponse>, ICacheRemover
             return _mapper.Map<CreateBudgetResponse>(budget);
         }
     }
-
-
 }

@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using Application.Features.BudgetCategory.Commands.Create;
 using Application.Features.BudgetCategory.Rules;
 using Application.Services.CategoryService;
 using Application.Services.Repositories;
@@ -13,20 +12,21 @@ using static Application.Features.Auth.Constants.ConstantRoles;
 
 namespace Application.Features.BudgetCategory.Commands.Update;
 
-public class UpdateBudgetCategoryCommand : IRequest<UpdateBudgetCategoryResponse>, ICacheRemoverRequest, ISecuredRequest, ITransactionalRequest, ILoggableRequest
+public class UpdateBudgetCategoryCommand : IRequest<UpdateBudgetCategoryResponse>, ICacheRemoverRequest,
+    ISecuredRequest, ITransactionalRequest, ILoggableRequest
 {
-    [JsonIgnore]
-    public string CacheKey => $"";
-    [JsonIgnore]
-    public bool BypassCache { get; }
-    [JsonIgnore]
-    public string CacheGroupKey => $"GetBudgetCategory";
-    [JsonIgnore]
-    public string[] Roles => new string[] { USER };
-    [JsonIgnore]
-    public int Id { get; set; }
+    [JsonIgnore] public int Id { get; set; }
+
     public int CategoryId { get; set; }
     public decimal AllocatedAmount { get; set; }
+
+    [JsonIgnore] public string CacheKey => "";
+
+    [JsonIgnore] public bool BypassCache { get; }
+
+    [JsonIgnore] public string CacheGroupKey => "GetBudgetCategory";
+
+    [JsonIgnore] public string[] Roles => new[] { USER };
 
     public class
         UpdateBudgetCategoryCommandHandler(
@@ -39,7 +39,8 @@ public class UpdateBudgetCategoryCommand : IRequest<UpdateBudgetCategoryResponse
             CancellationToken cancellationToken)
         {
             var category = await categoryService.GetCategoryByIdAsync(request.CategoryId, cancellationToken);
-            var budgetCategory = await budgetCategoryRepository.GetAsync(predicate: b=> b.Id == request.Id, cancellationToken: cancellationToken);
+            var budgetCategory =
+                await budgetCategoryRepository.GetAsync(b => b.Id == request.Id, cancellationToken: cancellationToken);
 
             budgetCategoryBusinessRules.CategoryMustBeExists(category);
             budgetCategoryBusinessRules.BudgetCategoryMustBeExists(budgetCategory);
@@ -49,7 +50,7 @@ public class UpdateBudgetCategoryCommand : IRequest<UpdateBudgetCategoryResponse
 
             await budgetCategoryRepository.AddAsync(budgetCategory);
 
-            return new UpdateBudgetCategoryResponse()
+            return new UpdateBudgetCategoryResponse
             {
                 BudgetId = budgetCategory.BudgetId,
                 CategoryId = budgetCategory.CategoryId,
@@ -57,5 +58,4 @@ public class UpdateBudgetCategoryCommand : IRequest<UpdateBudgetCategoryResponse
             };
         }
     }
-
 }

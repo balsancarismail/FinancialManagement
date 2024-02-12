@@ -1,7 +1,6 @@
 ﻿using Application.Features.Budget.Commands.Create;
 using Application.Features.Budget.Commands.Update;
 using AutoMapper;
-using Domain.Entities;
 
 namespace Application.Features.Budget.Profiles;
 
@@ -16,9 +15,9 @@ public class MappingProfile : Profile
         CreateMap<Domain.Entities.Budget, UpdateBudgetResponse>().ReverseMap();
 
         CreateMap<Domain.Entities.Budget, Domain.Entities.Budget>()
-            .ForMember( destinationMember: dest => dest.CreatedDate, memberOptions: opt => opt.Ignore())
-            .ForMember( destinationMember: dest => dest.UpdatedDate, memberOptions: opt => opt.Ignore())
-            .ForMember( destinationMember: dest => dest.DeletedDate, memberOptions: opt => opt.Ignore())
-            .ForMember( destinationMember: dest => dest.AppUserId, memberOptions: opt => opt.Ignore());
+            .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())
+            .ForMember(dest => dest.UpdatedDate, opt => opt.Ignore())
+            .ForMember(dest => dest.DeletedDate, opt => opt.Ignore())
+            .ForMember(dest => dest.AppUserId, opt => opt.Ignore());
     }
 }
