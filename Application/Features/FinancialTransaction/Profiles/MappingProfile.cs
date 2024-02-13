@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Application.Features.FinancialTransaction.Commands.Create;
+using AutoMapper;
 
 namespace Application.Features.FinancialTransaction.Profiles;
 
@@ -6,8 +7,8 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        //CreateMap<Domain.Entities.Budget, CreateBudgetCommand>().ReverseMap();
-        //CreateMap<Domain.Entities.Budget, CreateBudgetResponse>().ReverseMap();
+        CreateMap<Domain.Entities.Budget, CreateFinancialTransactionCommand>().ReverseMap();
+        CreateMap<Domain.Entities.Budget, CreateFinancialTransactionResponse>().ReverseMap();
         //
         //CreateMap<Domain.Entities.Budget, UpdateBudgetCommand>().ReverseMap();
         //CreateMap<Domain.Entities.Budget, UpdateBudgetResponse>().ReverseMap();
