@@ -4,6 +4,7 @@ namespace Application.Features.Investment.Commands.Create;
 
 public class CreateInvestmentResponse
 {
+    public int Id { get; set; }
     public int PortfolioId { get; set; }
     public InvestmentType InvestmentType { get; set; } // e.g., Stock, Bond
     public decimal Amount { get; set; }

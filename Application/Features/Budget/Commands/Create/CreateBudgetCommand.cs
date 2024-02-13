@@ -29,38 +29,29 @@ public class CreateBudgetCommand : IRequest<CreateBudgetResponse>, ICacheRemover
     [JsonIgnore] public string[] Roles => new[] { USER };
 
 
-    public class CreateBudgetCommandHandler : IRequestHandler<CreateBudgetCommand, CreateBudgetResponse>
+    public class CreateBudgetCommandHandler(
+        IMapper mapper,
+        IBudgetRepository budgetRepository,
+        IHttpContextAccessor httpContextAccessor,
+        BudgetBusinessRules budgetBusinessRules,
+        UserManager<AppUser> userManager) : IRequestHandler<CreateBudgetCommand, CreateBudgetResponse>
     {
-        private readonly IBudgetRepository _budgetRepository;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        private readonly IMapper _mapper;
-        private readonly UserManager<AppUser> _userManager;
         private readonly string emailSchema = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress";
 
-        public CreateBudgetCommandHandler(IMapper mapper, IBudgetRepository budgetRepository,
-            IHttpContextAccessor httpContextAccessor, BudgetBusinessRules budgetBusinessRules,
-            UserManager<AppUser> userManager)
-        {
-            _mapper = mapper;
-            _budgetRepository = budgetRepository;
-            _httpContextAccessor = httpContextAccessor;
-            _userManager = userManager;
-        }
 
         public async Task<CreateBudgetResponse> Handle(CreateBudgetCommand request, CancellationToken cancellationToken)
         {
-            var budget = _mapper.Map<Domain.Entities.Budget>(request);
-            var userMail = _httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(c => c.Type == emailSchema)!
+            var budget = mapper.Map<Domain.Entities.Budget>(request);
+            var userMail = httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(c => c.Type == emailSchema)!
                 .Value;
 
-            var user = await _userManager.FindByEmailAsync(userMail);
+            var user = await userManager.FindByEmailAsync(userMail);
 
             budget.AppUser = user;
 
-            await _budgetRepository.AddAsync(budget);
+            await budgetRepository.AddAsync(budget);
 
-            return _mapper.Map<CreateBudgetResponse>(budget);
+            return mapper.Map<CreateBudgetResponse>(budget);
         }
     }
 }

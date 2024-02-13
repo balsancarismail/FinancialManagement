@@ -27,29 +27,21 @@ public class UpdateBudgetCommand : IRequest<UpdateBudgetResponse>, ICacheRemover
 
     [JsonIgnore] public string[] Roles => new[] { USER };
 
-    public class UpdateBudgetCommandHandler : IRequestHandler<UpdateBudgetCommand, UpdateBudgetResponse>
+    public class UpdateBudgetCommandHandler(
+        IMapper mapper,
+        IBudgetRepository budgetRepository,
+        BudgetBusinessRules budgetBusinessRules) : IRequestHandler<UpdateBudgetCommand, UpdateBudgetResponse>
     {
-        private readonly IBudgetRepository _budgetRepository;
-
-        private readonly IMapper _mapper;
-
-        public UpdateBudgetCommandHandler(IMapper mapper, IBudgetRepository budgetRepository,
-            BudgetBusinessRules budgetBusinessRules)
-        {
-            _mapper = mapper;
-            _budgetRepository = budgetRepository;
-        }
-
         public async Task<UpdateBudgetResponse> Handle(UpdateBudgetCommand request, CancellationToken cancellationToken)
         {
-            var budget = _mapper.Map<Domain.Entities.Budget>(request);
+            var budget = mapper.Map<Domain.Entities.Budget>(request);
             var budgetEntity =
-                await _budgetRepository.GetAsync(b => b.Id == request.Id, cancellationToken: cancellationToken);
+                await budgetRepository.GetAsync(b => b.Id == request.Id, cancellationToken: cancellationToken);
 
-            _mapper.Map(budget, budgetEntity);
-            await _budgetRepository.UpdateAsync(budgetEntity);
+            mapper.Map(budget, budgetEntity);
+            await budgetRepository.UpdateAsync(budgetEntity);
 
-            return _mapper.Map<UpdateBudgetResponse>(budget);
+            return mapper.Map<UpdateBudgetResponse>(budget);
         }
     }
 }

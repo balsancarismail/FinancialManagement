@@ -2,6 +2,7 @@
 using Application.Features.Budget.Commands.Update;
 using Application.Features.Budget.Rules;
 using Application.Services.Repositories;
+using AutoMapper;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
@@ -24,7 +25,10 @@ public class DeleteBudgetCommand : IRequest<DeleteBudgetResponse>, IRequest<Upda
 
     [JsonIgnore] public string[] Roles => new[] { USER };
 
-    public class DeleteBudgetCommandHandler(IBudgetRepository budgetRepository, BudgetBusinessRules budgetBusinessRules)
+    public class DeleteBudgetCommandHandler(
+        IBudgetRepository budgetRepository,
+        BudgetBusinessRules budgetBusinessRules,
+        IMapper mapper)
         : IRequestHandler<DeleteBudgetCommand, DeleteBudgetResponse>
     {
         public async Task<DeleteBudgetResponse> Handle(DeleteBudgetCommand request, CancellationToken cancellationToken)
@@ -33,7 +37,7 @@ public class DeleteBudgetCommand : IRequest<DeleteBudgetResponse>, IRequest<Upda
             var budgetEntity =
                 await budgetRepository.GetAsync(b => b.Id == request.Id, cancellationToken: cancellationToken);
             await budgetRepository.DeleteAsync(budgetEntity);
-            return new DeleteBudgetResponse();
+            return mapper.Map<DeleteBudgetResponse>(budgetEntity);
         }
     }
 }

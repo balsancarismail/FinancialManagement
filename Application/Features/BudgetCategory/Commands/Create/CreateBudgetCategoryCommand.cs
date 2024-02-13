@@ -53,7 +53,13 @@ public class CreateBudgetCategoryCommand : IRequest<CreateBudgetCategoryResponse
             };
 
             await budgetCategoryRepository.AddAsync(budgetCategory);
-            return new CreateBudgetCategoryResponse();
+            return new CreateBudgetCategoryResponse
+            {
+                Id = budgetCategory.Id,
+                BudgetId = budgetCategory.BudgetId,
+                CategoryId = budgetCategory.CategoryId,
+                AllocatedAmount = budgetCategory.AllocatedAmount
+            };
         }
     }
 }

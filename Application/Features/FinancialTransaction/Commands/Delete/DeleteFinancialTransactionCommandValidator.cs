@@ -2,9 +2,9 @@
 
 namespace Application.Features.FinancialTransaction.Commands.Delete;
 
-public class DeleteFinancialTransactionValidator : AbstractValidator<DeleteFinancialTransactionCommand>
+public class DeleteFinancialTransactionCommandValidator : AbstractValidator<DeleteFinancialTransactionCommand>
 {
-    public DeleteFinancialTransactionValidator()
+    public DeleteFinancialTransactionCommandValidator()
     {
         RuleFor(c => c.Id).NotNull().NotEmpty().GreaterThan(0);
     }

@@ -25,8 +25,6 @@ public class CreateAuthenticationTokenCommand(string email, string password, str
             IRefreshTokenService refreshTokenService)
         : IRequestHandler<CreateAuthenticationTokenCommand, CreatedAuthenticationTokenResponse>
     {
-        private readonly IRefreshTokenService refreshTokenService = refreshTokenService;
-
         public async Task<CreatedAuthenticationTokenResponse> Handle(CreateAuthenticationTokenCommand request,
             CancellationToken cancellationToken)
         {

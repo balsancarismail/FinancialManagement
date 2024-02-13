@@ -48,10 +48,11 @@ public class UpdateBudgetCategoryCommand : IRequest<UpdateBudgetCategoryResponse
             budgetCategory.AllocatedAmount = request.AllocatedAmount;
             budgetCategory.Category = category;
 
-            await budgetCategoryRepository.AddAsync(budgetCategory);
+            await budgetCategoryRepository.UpdateAsync(budgetCategory);
 
             return new UpdateBudgetCategoryResponse
             {
+                Id = budgetCategory.Id,
                 BudgetId = budgetCategory.BudgetId,
                 CategoryId = budgetCategory.CategoryId,
                 AllocatedAmount = budgetCategory.AllocatedAmount

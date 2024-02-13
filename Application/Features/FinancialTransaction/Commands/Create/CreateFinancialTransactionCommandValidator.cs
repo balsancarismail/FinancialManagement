@@ -1,12 +1,11 @@
 ﻿using FluentValidation;
 
-namespace Application.Features.FinancialTransaction.Commands.Update;
+namespace Application.Features.FinancialTransaction.Commands.Create;
 
-public class UpdateFinancialTransactionValidator : AbstractValidator<UpdateFinancialTransactionCommand>
+public class CreateFinancialTransactionCommandValidator : AbstractValidator<CreateFinancialTransactionCommand>
 {
-    public UpdateFinancialTransactionValidator()
+    public CreateFinancialTransactionCommandValidator()
     {
-        RuleFor(c => c.Id).NotNull().NotEmpty().GreaterThan(0);
         RuleFor(c => c.Amount).NotNull().NotEmpty().GreaterThan(0);
         RuleFor(c => c.Date).NotNull().NotEmpty();
         RuleFor(c => c.Description).NotNull().NotEmpty();
