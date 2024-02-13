@@ -12,7 +12,7 @@ using static Application.Features.Auth.Constants.ConstantRoles;
 
 namespace Application.Features.Budget.Commands.Delete;
 
-public class DeleteBudgetCommand : IRequest<DeleteBudgetResponse>, IRequest<UpdateBudgetResponse>, ICacheRemoverRequest,
+public class DeleteBudgetCommand : IRequest<DeleteBudgetResponse>, ICacheRemoverRequest,
     ISecuredRequest, ITransactionalRequest, ILoggableRequest
 {
     public int Id { get; set; }

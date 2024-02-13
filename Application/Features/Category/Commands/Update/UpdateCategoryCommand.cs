@@ -15,9 +15,10 @@ namespace Application.Features.Category.Commands.Update;
 public class UpdateCategoryCommand : IRequest<UpdateCategoryResponse>, ICacheRemoverRequest, ISecuredRequest,
     ITransactionalRequest, ILoggableRequest
 {
+    [JsonIgnore]
     public int Id { get; set; }
     public string Name { get; set; }
-    public CategoryType CategoryType { get; set; }
+    public int CategoryType { get; set; }
 
     [JsonIgnore] public string CacheKey => "";
 

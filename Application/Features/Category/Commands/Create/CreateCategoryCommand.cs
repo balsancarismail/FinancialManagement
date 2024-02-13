@@ -12,11 +12,11 @@ using static Application.Features.Auth.Constants.ConstantRoles;
 
 namespace Application.Features.Category.Commands.Create;
 
-public class CreateCategoryCommand : IRequest<CreateBudgetResponse>, ICacheRemoverRequest, ISecuredRequest,
+public class CreateCategoryCommand : IRequest<CreateCategoryResponse>, ICacheRemoverRequest, ISecuredRequest,
     ITransactionalRequest, ILoggableRequest
 {
     public string Name { get; set; }
-    public CategoryType CategoryType { get; set; }
+    public int CategoryType { get; set; }
 
     [JsonIgnore] public string CacheKey => "";
 
@@ -27,14 +27,14 @@ public class CreateCategoryCommand : IRequest<CreateBudgetResponse>, ICacheRemov
     [JsonIgnore] public string[] Roles => new[] { USER };
 
     public class CreateCategoryCommandHandler(ICategoryRepository categoryRepository, IMapper mapper)
-        : IRequestHandler<CreateCategoryCommand, CreateBudgetResponse>
+        : IRequestHandler<CreateCategoryCommand, CreateCategoryResponse>
     {
-        public async Task<CreateBudgetResponse> Handle(CreateCategoryCommand request,
+        public async Task<CreateCategoryResponse> Handle(CreateCategoryCommand request,
             CancellationToken cancellationToken)
         {
             var category = mapper.Map<Domain.Entities.Category>(request);
             var result = await categoryRepository.AddAsync(category);
-            return mapper.Map<CreateBudgetResponse>(result);
+            return mapper.Map<CreateCategoryResponse>(result);
         }
     }
 }
