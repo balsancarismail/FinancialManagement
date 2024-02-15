@@ -1,6 +1,9 @@
 ﻿using Application.Features.Budget.Commands.Create;
 using Application.Features.Budget.Commands.Delete;
 using Application.Features.Budget.Commands.Update;
+using Application.Features.Budget.Queries.GetByıd;
+using Application.Features.Budget.Queries.GetList;
+using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -29,6 +32,22 @@ public class BudgetsController : BaseController
     {
         command.Id = id;
         var response = await Mediator.Send(command);
+        return Ok(response);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetBudgetById(int id)
+    {
+        var query = new GetByIdBudgetQuery { Id = id };
+        var response = await Mediator.Send(query);
+        return Ok(response);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetBudgetList([FromQuery] PageRequest pageRequest)
+    {
+        var query = new GetBudgetListQuery { PageRequest = pageRequest };
+        var response = await Mediator.Send(query);
         return Ok(response);
     }
 }
