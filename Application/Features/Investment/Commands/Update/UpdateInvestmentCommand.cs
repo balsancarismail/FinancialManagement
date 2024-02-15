@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 using Application.Features.Investment.Rules;
 using Application.Services.InvestmentPortfolioService;
 using Application.Services.Repositories;
@@ -37,7 +38,8 @@ public class UpdateInvestmentCommand : IRequest<UpdateInvestmentResponse>, ICach
             IInvestmentRepository investmentRepository,
             IInvestmentPortfolioService investmentPortfolioService,
             InvestmentBusinessRules investmentBusinessRules,
-            IMapper mapper)
+            IMapper mapper,
+            Random random)
         : IRequestHandler<UpdateInvestmentCommand, UpdateInvestmentResponse>
     {
         public async Task<UpdateInvestmentResponse> Handle(UpdateInvestmentCommand request,
@@ -46,6 +48,12 @@ public class UpdateInvestmentCommand : IRequest<UpdateInvestmentResponse>, ICach
             var investmentEntity =
                 await investmentRepository.GetAsync(i => i.Id == request.Id, cancellationToken: cancellationToken);
             var investment = mapper.Map<Domain.Entities.Investment>(request);
+
+            if (investment.Amount != investmentEntity.Amount)
+            {
+                decimal changePercentage = (decimal)(random.NextDouble() * 0.2 - 0.1);
+                investment.RandomProfitOrLoss = changePercentage * request.Amount;
+            }
 
             investmentBusinessRules.InvestmentMustBeExists(investmentEntity);
 

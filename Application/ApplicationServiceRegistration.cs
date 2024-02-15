@@ -60,6 +60,7 @@ public static class ApplicationServiceRegistration
             options.Configuration = "192.168.33.129:6379";
             options.InstanceName = "SampleInstance";
         });*/
+        services.AddSingleton(typeof(Random));
 
         return services;
     }
