@@ -1,6 +1,7 @@
 ﻿using Application.Features.BudgetCategory.Commands.Create;
 using Application.Features.BudgetCategory.Commands.Delete;
 using Application.Features.BudgetCategory.Commands.Update;
+using Application.Features.BudgetCategory.Queries.GetById;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -29,6 +30,14 @@ public class BudgetCategoriesController : BaseController
     {
         var deleteBudgetCategoryCommand = new DeleteBudgetCategoryCommand { Id = id };
         var result = await Mediator.Send(deleteBudgetCategoryCommand);
+        return Ok(result);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(int id)
+    {
+        var getBudgetCategoryByIdQuery = new GetBudgetCategoryByIdQuery { Id = id };
+        var result = await Mediator.Send(getBudgetCategoryByIdQuery);
         return Ok(result);
     }
 }

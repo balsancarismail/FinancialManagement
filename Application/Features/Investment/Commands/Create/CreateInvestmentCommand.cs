@@ -19,7 +19,7 @@ public class CreateInvestmentCommand : IRequest<CreateInvestmentResponse>, ICach
 {
     [JsonIgnore] public decimal RandomProfitOrLoss { get; set; }
 
-    [JsonIgnore] public int PortfolioId { get; set; }
+    public int PortfolioId { get; set; }
 
     public InvestmentType InvestmentType { get; set; } // e.g., Stock, Bond
     public decimal Amount { get; set; }
@@ -53,11 +53,12 @@ public class CreateInvestmentCommand : IRequest<CreateInvestmentResponse>, ICach
             var investment = mapper.Map<Domain.Entities.Investment>(request);
 
             decimal changePercentage = (decimal)(random.NextDouble() * 0.2 - 0.1);
-            request.RandomProfitOrLoss = changePercentage * request.Amount;
+            investment.RandomProfitOrLoss = investment.Amount + changePercentage * request.Amount;
+            investment.Portfolio = investmentPortfolio;
 
             await investmentRepository.AddAsync(investment);
 
-            return new CreateInvestmentResponse();
+            return mapper.Map<CreateInvestmentResponse>(investment);
         }
     }
 }

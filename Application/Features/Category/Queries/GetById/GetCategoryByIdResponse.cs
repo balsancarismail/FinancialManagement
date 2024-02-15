@@ -1,9 +1,9 @@
-﻿using Domain.Enums;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using Domain.Enums;
 
-namespace Application.Features.Category.Queries.GetList;
+namespace Application.Features.Category.Queries.GetById;
 
-public class GetListCategoryListItemDto
+public class GetCategoryByIdResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }

@@ -1,7 +1,11 @@
 ﻿using Application.Features.Category.Commands.Create;
 using Application.Features.Category.Commands.Delete;
 using Application.Features.Category.Commands.Update;
+using Application.Features.Category.Queries.GetById;
+using Application.Features.Category.Queries.GetList;
 using AutoMapper;
+using Core.Application.Responses;
+using Core.Persistence.Paging;
 using Domain.Enums;
 
 namespace Application.Features.Category.Profiles;
@@ -19,6 +23,12 @@ public class MappingProfile : Profile
         CreateMap<Domain.Entities.Category, UpdateCategoryResponse>().ReverseMap();
 
         CreateMap<Domain.Entities.Category, DeleteCategoryResponse>().ReverseMap();
+
+        CreateMap<Domain.Entities.Category, GetCategoryByIdResponse>().ReverseMap();
+
+        CreateMap<Domain.Entities.Category, GetListCategoryListItemDto>().ReverseMap();
+        CreateMap<Paginate<Domain.Entities.Category>, GetListResponse<GetListCategoryListItemDto>>().ReverseMap();
+
 
 
         CreateMap<Domain.Entities.Category, Domain.Entities.Category>()

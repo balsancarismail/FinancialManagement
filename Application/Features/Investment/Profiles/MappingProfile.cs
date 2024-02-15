@@ -11,11 +11,11 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Domain.Entities.Investment, CreateInvestmentCommand>().ReverseMap()
-            .ForMember(destinationMember: dest => dest.InvestmentType, memberOptions: opt => opt.MapFrom(src => Enum.Parse<CategoryType>(src.InvestmentType.ToString())));
+            .ForMember(destinationMember: dest => dest.InvestmentType, memberOptions: opt => opt.MapFrom(src => Enum.Parse<InvestmentType>(src.InvestmentType.ToString())));
         CreateMap<Domain.Entities.Investment, CreateInvestmentResponse>().ReverseMap();
 
         CreateMap<Domain.Entities.Investment, UpdateInvestmentCommand>().ReverseMap()
-            .ForMember(destinationMember: dest => dest.InvestmentType, memberOptions: opt => opt.MapFrom(src => Enum.Parse<CategoryType>(src.InvestmentType.ToString())));
+            .ForMember(destinationMember: dest => dest.InvestmentType, memberOptions: opt => opt.MapFrom(src => Enum.Parse<InvestmentType>(src.InvestmentType.ToString())));
         CreateMap<Domain.Entities.Investment, UpdateInvestmentResponse>().ReverseMap();
             
         CreateMap<Domain.Entities.Investment, DeleteInvestmentResponse>().ReverseMap();

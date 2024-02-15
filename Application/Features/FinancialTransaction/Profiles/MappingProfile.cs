@@ -1,4 +1,5 @@
 ﻿using Application.Features.FinancialTransaction.Commands.Create;
+using Application.Features.FinancialTransaction.Commands.Delete;
 using Application.Features.FinancialTransaction.Commands.Update;
 using AutoMapper;
 
@@ -13,6 +14,8 @@ public class MappingProfile : Profile
         
         CreateMap<Domain.Entities.FinancialTransaction, UpdateFinancialTransactionCommand>().ReverseMap();
         CreateMap<Domain.Entities.FinancialTransaction, UpdateFinancialTransactionResponse>().ReverseMap();
+
+        CreateMap<Domain.Entities.FinancialTransaction, DeleteFinancialTransactionResponse>().ReverseMap();
 
         CreateMap<Domain.Entities.FinancialTransaction, Domain.Entities.FinancialTransaction>()
             .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())

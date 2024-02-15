@@ -12,6 +12,11 @@ public class GetByIdBudgetQuery : IRequest<GetByIdBudgetResponse>, ILoggableRequ
 {
     public int Id { get; set; }
 
+    public string CacheKey => $"GetBudgetById({Id})";
+    public bool BypassCache { get; }
+    public string CacheGroupKey => "GetBudget";
+    public TimeSpan? SlidingExpiration { get; init; }
+
     public class GetByIdBudgetQueryHandler(
         IBudgetRepository budgetRepository,
         IMapper mapper,
@@ -29,9 +34,4 @@ public class GetByIdBudgetQuery : IRequest<GetByIdBudgetResponse>, ILoggableRequ
             return mapper.Map<GetByIdBudgetResponse>(budget);
         }
     }
-
-    public string CacheKey => $"GetBudgetById({Id})";
-    public bool BypassCache { get; }
-    public string CacheGroupKey => "GetBudget";
-    public TimeSpan? SlidingExpiration { get; init; }
 }

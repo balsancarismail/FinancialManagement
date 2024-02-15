@@ -52,7 +52,7 @@ public class UpdateInvestmentCommand : IRequest<UpdateInvestmentResponse>, ICach
             if (investment.Amount != investmentEntity.Amount)
             {
                 decimal changePercentage = (decimal)(random.NextDouble() * 0.2 - 0.1);
-                investment.RandomProfitOrLoss = changePercentage * request.Amount;
+                investment.RandomProfitOrLoss = investment.Amount - changePercentage * request.Amount;
             }
 
             investmentBusinessRules.InvestmentMustBeExists(investmentEntity);
