@@ -1,4 +1,4 @@
-﻿namespace Application.Features.FinancialTransaction.Queries.GetListByUserOrCategory;
+﻿  namespace Application.Features.FinancialTransaction.Queries.GetListByUserOrCategory;
 
 public class GetFinancialTransactionByUserOrCategoryListQuery
 {

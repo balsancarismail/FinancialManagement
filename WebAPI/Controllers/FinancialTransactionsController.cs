@@ -1,6 +1,7 @@
 ﻿using Application.Features.FinancialTransaction.Commands.Create;
 using Application.Features.FinancialTransaction.Commands.Delete;
 using Application.Features.FinancialTransaction.Commands.Update;
+using Application.Features.FinancialTransaction.Queries.GetById;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -31,6 +32,14 @@ public class FinancialTransactionsController : BaseController
     {
         var deleteFinancialTransactionCommand = new DeleteFinancialTransactionCommand { Id = id };
         var ok = await Mediator.Send(deleteFinancialTransactionCommand);
+        return Ok(ok);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<GetFinancialTransactionByIdResponse>> GetById(int id)
+    {
+        var getFinancialTransactionByIdQuery = new GetFinancialTransactionByIdQuery { Id = id };
+        var ok = await Mediator.Send(getFinancialTransactionByIdQuery);
         return Ok(ok);
     }
 }
