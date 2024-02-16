@@ -4,4 +4,5 @@ public static class FinancialTransactionMessages
 {
     public static string FinancialTransactionMustNotBeNull = "Financial transaction must not be null";
     public static string CategoryMustNotBeNull = "Category must not be null";
+    public static string UserIdOrCategoryIdMustBeExists => "UserId or CategoryId must be exists";
 }

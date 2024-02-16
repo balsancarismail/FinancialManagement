@@ -19,4 +19,12 @@ public class FinancialTransactionBusinessRules
 
         return Task.CompletedTask;
     }
+
+    public Task UserIdOrCategoryIdMustBeExists(int? userId, int? categoryId)
+    {
+        if (!userId.HasValue && !categoryId.HasValue)
+            throw new BusinessException(FinancialTransactionMessages.UserIdOrCategoryIdMustBeExists);
+
+        return Task.CompletedTask;
+    }
 }

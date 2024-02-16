@@ -2,7 +2,10 @@
 using Application.Features.FinancialTransaction.Commands.Delete;
 using Application.Features.FinancialTransaction.Commands.Update;
 using Application.Features.FinancialTransaction.Queries.GetById;
+using Application.Features.FinancialTransaction.Queries.GetListByUserOrCategory;
 using AutoMapper;
+using Core.Application.Responses;
+using Core.Persistence.Paging;
 
 namespace Application.Features.FinancialTransaction.Profiles;
 
@@ -21,6 +24,11 @@ public class MappingProfile : Profile
         CreateMap<Domain.Entities.FinancialTransaction, GetFinancialTransactionByIdResponse>()
             .ForMember(destinationMember: dest => dest.CategoryName, memberOptions: opt => opt.MapFrom(src => src.Category.Name)).ReverseMap();
 
+        CreateMap<Domain.Entities.FinancialTransaction, GetListFinancialTransactionByUserOrCategoryListItemDto>()
+            .ForMember(destinationMember: dest => dest.CategoryName, memberOptions: opt => opt.MapFrom(src => src.Category.Name)).ReverseMap();
+
+        CreateMap<Paginate<Domain.Entities.FinancialTransaction>, GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>>();
+        
         CreateMap<Domain.Entities.FinancialTransaction, Domain.Entities.FinancialTransaction>()
             .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())
             .ForMember(dest => dest.UpdatedDate, opt => opt.Ignore())

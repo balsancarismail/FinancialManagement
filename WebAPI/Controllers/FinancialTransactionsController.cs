@@ -2,6 +2,9 @@
 using Application.Features.FinancialTransaction.Commands.Delete;
 using Application.Features.FinancialTransaction.Commands.Update;
 using Application.Features.FinancialTransaction.Queries.GetById;
+using Application.Features.FinancialTransaction.Queries.GetListByUserOrCategory;
+using Core.Application.Requests;
+using Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -40,6 +43,19 @@ public class FinancialTransactionsController : BaseController
     {
         var getFinancialTransactionByIdQuery = new GetFinancialTransactionByIdQuery { Id = id };
         var ok = await Mediator.Send(getFinancialTransactionByIdQuery);
+        return Ok(ok);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>>>
+        GetListByUserOrCategory([FromQuery] PageRequest pageRequest, [FromQuery] int? AppUserId, [FromQuery] int? categoryId)
+    {
+        var ok = await Mediator.Send(new GetFinancialTransactionByUserOrCategoryListQuery()
+        {
+            AppUserId = AppUserId,
+            CategoryId = categoryId,
+            PageRequest = pageRequest
+        });
         return Ok(ok);
     }
 }
