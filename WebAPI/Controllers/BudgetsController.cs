@@ -1,8 +1,9 @@
 ﻿using Application.Features.Budget.Commands.Create;
 using Application.Features.Budget.Commands.Delete;
 using Application.Features.Budget.Commands.Update;
-using Application.Features.Budget.Queries.GetByıd;
+using Application.Features.Budget.Queries.GetById;
 using Application.Features.Budget.Queries.GetList;
+using Application.Features.Budget.Queries.GetUserBreakdown;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,6 +48,14 @@ public class BudgetsController : BaseController
     public async Task<IActionResult> GetBudgetList([FromQuery] PageRequest pageRequest)
     {
         var query = new GetBudgetListQuery { PageRequest = pageRequest };
+        var response = await Mediator.Send(query);
+        return Ok(response);
+    }
+
+    [HttpGet("breakdown/{id}")]
+    public async Task<IActionResult> GetBudgetBreakdown(int id)
+    {
+        var query = new GetBudgetBreakdownQuery { Id = id };
         var response = await Mediator.Send(query);
         return Ok(response);
     }

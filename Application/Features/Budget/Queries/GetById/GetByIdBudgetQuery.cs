@@ -6,7 +6,7 @@ using Core.Application.Pipelines.Logging;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Features.Budget.Queries.GetByıd;
+namespace Application.Features.Budget.Queries.GetById;
 
 public class GetByIdBudgetQuery : IRequest<GetByIdBudgetResponse>, ILoggableRequest, ICachableRequest
 {

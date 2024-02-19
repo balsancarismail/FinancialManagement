@@ -1,6 +1,10 @@
-﻿using Application.Features.InvestmentPortfolio.Commands.Create;
+﻿using Application.Features.Category.Queries.GetList;
+using Application.Features.InvestmentPortfolio.Commands.Create;
 using Application.Features.InvestmentPortfolio.Commands.Delete;
 using Application.Features.InvestmentPortfolio.Commands.Update;
+using Application.Features.InvestmentPortfolio.Queries.GetById;
+using Application.Features.InvestmentPortfolio.Queries.GetListInvestmentPortfolio;
+using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -31,6 +35,21 @@ public class InvestmentPortfolioController : BaseController
     public async Task<IActionResult> DeleteInvestmentPortfolio(int id)
     {
         var result = await Mediator.Send(new DeleteInvestmentPortfolioCommand { Id = id });
+        return Ok(result);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetInvestmentPortfolioById(int id)
+    {
+        var result = await Mediator.Send(new GetInvestmentPortfolioByIdQuery { Id = id });
+        return Ok(result);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetInvestmentPortfolioList([FromQuery] PageRequest pageRequest)
+    {
+        var query = new GetInvestmentPortfolioListQuery() { PageRequest = pageRequest };
+        var result = await Mediator.Send(query);
         return Ok(result);
     }
 }

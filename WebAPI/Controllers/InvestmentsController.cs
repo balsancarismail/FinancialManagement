@@ -1,6 +1,7 @@
 ﻿using Application.Features.Investment.Commands.Create;
 using Application.Features.Investment.Commands.Delete;
 using Application.Features.Investment.Commands.Update;
+using Application.Features.Investment.Queries.GetById;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -31,4 +32,13 @@ public class InvestmentsController : BaseController
         var result = await Mediator.Send(command);
         return Ok(result);
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetInvestmentById(int id)
+    {
+        var query = new GetInvestmentByIdQuery { Id = id };
+        var result = await Mediator.Send(query);
+        return Ok(result);
+    }
+
 }

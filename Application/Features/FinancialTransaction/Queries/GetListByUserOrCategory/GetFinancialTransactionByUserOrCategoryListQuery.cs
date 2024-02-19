@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq.Expressions;
-using Application.Features.FinancialTransaction.Queries.GetById;
+﻿using System.Linq.Expressions;
 using Application.Features.FinancialTransaction.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -8,7 +6,6 @@ using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Requests;
 using Core.Application.Responses;
-using Core.Persistence.Paging;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,7 +31,6 @@ public class GetFinancialTransactionByUserOrCategoryListQuery :
         : IRequestHandler<
             GetFinancialTransactionByUserOrCategoryListQuery, GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>>
     {
-
 
         public async Task<GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>> Handle(
             GetFinancialTransactionByUserOrCategoryListQuery request, CancellationToken cancellationToken)

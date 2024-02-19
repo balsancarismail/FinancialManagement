@@ -1,6 +1,6 @@
 ﻿using Application.Features.Budget.Commands.Create;
 using Application.Features.Budget.Commands.Update;
-using Application.Features.Budget.Queries.GetByıd;
+using Application.Features.Budget.Queries.GetById;
 using Application.Features.Budget.Queries.GetList;
 using AutoMapper;
 using Core.Application.Responses;

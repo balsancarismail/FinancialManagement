@@ -1,4 +1,4 @@
-﻿namespace Application.Features.Budget.Queries.GetByıd;
+﻿namespace Application.Features.Budget.Queries.GetById;
 
 public class GetByIdBudgetResponse
 {
