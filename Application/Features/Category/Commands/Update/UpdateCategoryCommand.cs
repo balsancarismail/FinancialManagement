@@ -6,7 +6,6 @@ using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Transaction;
-using Domain.Enums;
 using MediatR;
 using static Application.Features.Auth.Constants.ConstantRoles;
 
@@ -15,8 +14,8 @@ namespace Application.Features.Category.Commands.Update;
 public class UpdateCategoryCommand : IRequest<UpdateCategoryResponse>, ICacheRemoverRequest, ISecuredRequest,
     ITransactionalRequest, ILoggableRequest
 {
-    [JsonIgnore]
-    public int Id { get; set; }
+    [JsonIgnore] public int Id { get; set; }
+
     public string Name { get; set; }
     public int CategoryType { get; set; }
 

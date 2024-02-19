@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Application.Features.Investment.Rules;
 using Application.Services.InvestmentPortfolioService;
 using Application.Services.Repositories;
@@ -52,7 +51,7 @@ public class CreateInvestmentCommand : IRequest<CreateInvestmentResponse>, ICach
 
             var investment = mapper.Map<Domain.Entities.Investment>(request);
 
-            decimal changePercentage = (decimal)(random.NextDouble() * 0.2 - 0.1);
+            var changePercentage = (decimal)(random.NextDouble() * 0.2 - 0.1);
             investment.RandomProfitOrLoss = investment.Amount + changePercentage * request.Amount;
             investment.Portfolio = investmentPortfolio;
 

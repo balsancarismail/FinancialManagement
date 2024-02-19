@@ -40,5 +40,4 @@ public class InvestmentsController : BaseController
         var result = await Mediator.Send(query);
         return Ok(result);
     }
-
 }

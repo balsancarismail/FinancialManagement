@@ -19,13 +19,15 @@ public class MappingProfile : Profile
         CreateMap<Domain.Entities.Budget, UpdateBudgetResponse>().ReverseMap();
 
         CreateMap<Domain.Entities.Budget, GetByIdBudgetResponse>()
-            .ForMember(destinationMember: dest => dest.UserName, memberOptions: opt => opt.MapFrom(src => $"{src.AppUser.FirstName} {src.AppUser.LastName}")).ReverseMap();
+            .ForMember(dest => dest.UserName,
+                opt => opt.MapFrom(src => $"{src.AppUser.FirstName} {src.AppUser.LastName}")).ReverseMap();
 
         CreateMap<Domain.Entities.Budget, GetListBudgetListItemDto>()
-            .ForMember(destinationMember: dest => dest.UserName, memberOptions: opt => opt.MapFrom(src => $"{src.AppUser.FirstName} {src.AppUser.LastName}")).ReverseMap();
+            .ForMember(dest => dest.UserName,
+                opt => opt.MapFrom(src => $"{src.AppUser.FirstName} {src.AppUser.LastName}")).ReverseMap();
 
         CreateMap<Paginate<Domain.Entities.Budget>, GetListResponse<GetListBudgetListItemDto>>().ReverseMap();
-        
+
 
         CreateMap<Domain.Entities.Budget, Domain.Entities.Budget>()
             .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())

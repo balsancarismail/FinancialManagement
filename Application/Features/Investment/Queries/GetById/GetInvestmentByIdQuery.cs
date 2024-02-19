@@ -1,5 +1,4 @@
-﻿using Application.Features.FinancialTransaction.Queries.GetById;
-using Application.Features.Investment.Rules;
+﻿using Application.Features.Investment.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Application.Pipelines.Caching;
@@ -12,7 +11,6 @@ namespace Application.Features.Investment.Queries.GetById;
 public class GetInvestmentByIdQuery : IRequest<GetInvestmentByIdResponse>, ILoggableRequest,
     ICachableRequest
 {
-    
     public int Id { get; set; }
 
     public string CacheKey => $"GetInvestmentById({Id})";
@@ -26,11 +24,11 @@ public class GetInvestmentByIdQuery : IRequest<GetInvestmentByIdResponse>, ILogg
         InvestmentBusinessRules investmentBusinessRules)
         : IRequestHandler<GetInvestmentByIdQuery, GetInvestmentByIdResponse>
     {
-
         public async Task<GetInvestmentByIdResponse> Handle(GetInvestmentByIdQuery request,
             CancellationToken cancellationToken)
         {
-            var investment = await investmentRepository.GetAsync(predicate: b => b.Id == request.Id, enableTracking: false, cancellationToken: cancellationToken, include: src => src.Include(b => b.Portfolio));
+            var investment = await investmentRepository.GetAsync(b => b.Id == request.Id, enableTracking: false,
+                cancellationToken: cancellationToken, include: src => src.Include(b => b.Portfolio));
             investmentBusinessRules.InvestmentMustBeExists(investment);
 
             return mapper.Map<GetInvestmentByIdResponse>(investment);

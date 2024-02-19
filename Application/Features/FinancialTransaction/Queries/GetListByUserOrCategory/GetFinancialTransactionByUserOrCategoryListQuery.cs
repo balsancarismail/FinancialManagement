@@ -29,19 +29,21 @@ public class GetFinancialTransactionByUserOrCategoryListQuery :
         IMapper mapper,
         FinancialTransactionBusinessRules businessRules)
         : IRequestHandler<
-            GetFinancialTransactionByUserOrCategoryListQuery, GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>>
+            GetFinancialTransactionByUserOrCategoryListQuery,
+            GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>>
     {
-
         public async Task<GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>> Handle(
             GetFinancialTransactionByUserOrCategoryListQuery request, CancellationToken cancellationToken)
         {
             await businessRules.UserIdOrCategoryIdMustBeExists(request.AppUserId, request.CategoryId);
-            Expression<Func<Domain.Entities.FinancialTransaction,bool>> predicate;
+            Expression<Func<Domain.Entities.FinancialTransaction, bool>> predicate;
 
-            if (request.AppUserId.HasValue && request.AppUserId != 0 && request.CategoryId.HasValue && request.CategoryId != 0) predicate = x => x.AppUserId == request.AppUserId && x.CategoryId == request.CategoryId;
+            if (request.AppUserId.HasValue && request.AppUserId != 0 && request.CategoryId.HasValue &&
+                request.CategoryId != 0)
+                predicate = x => x.AppUserId == request.AppUserId && x.CategoryId == request.CategoryId;
             else if (request.AppUserId != 0) predicate = x => x.AppUserId == request.AppUserId;
             else predicate = x => x.CategoryId == request.CategoryId;
-            
+
             var result = await financialTransactionRepository.GetListAsync(
                 index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize,

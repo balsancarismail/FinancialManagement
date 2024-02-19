@@ -26,9 +26,9 @@ public class GetByIdBudgetQuery : IRequest<GetByIdBudgetResponse>, ILoggableRequ
         public async Task<GetByIdBudgetResponse> Handle(GetByIdBudgetQuery request, CancellationToken cancellationToken)
         {
             var budget = await budgetRepository.GetAsync(b => b.Id == request.Id,
-                                include: b => b.Include(b => b.AppUser),
-                                enableTracking: false,
-                               cancellationToken: cancellationToken);
+                b => b.Include(b => b.AppUser),
+                enableTracking: false,
+                cancellationToken: cancellationToken);
             await budgetBusinessRules.IsBudgetExists(request.Id, cancellationToken);
 
             return mapper.Map<GetByIdBudgetResponse>(budget);

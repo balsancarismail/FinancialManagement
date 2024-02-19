@@ -21,10 +21,11 @@ public class GetCategoryByIdQuery : IRequest<GetCategoryByIdResponse>, ILoggable
         CategoryBusinessRules categoryBusinessRules)
         : IRequestHandler<GetCategoryByIdQuery, GetCategoryByIdResponse>
     {
-
-        public async Task<GetCategoryByIdResponse> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
+        public async Task<GetCategoryByIdResponse> Handle(GetCategoryByIdQuery request,
+            CancellationToken cancellationToken)
         {
-            var category = await categoryRepository.GetAsync(predicate: b => b.Id == request.Id, enableTracking: false, cancellationToken: cancellationToken);
+            var category = await categoryRepository.GetAsync(b => b.Id == request.Id, enableTracking: false,
+                cancellationToken: cancellationToken);
             await categoryBusinessRules.CategoryMustNotBeNull(category);
 
             return mapper.Map<GetCategoryByIdResponse>(category);

@@ -9,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.Budget.Queries.GetList;
 
-public class GetBudgetListQuery: IRequest<GetListResponse<GetListBudgetListItemDto>> , ILoggableRequest, ICachableRequest
+public class GetBudgetListQuery : IRequest<GetListResponse<GetListBudgetListItemDto>>, ILoggableRequest,
+    ICachableRequest
 {
     public PageRequest PageRequest { get; set; }
     public string CacheKey => $"GetBudgetList({PageRequest.PageIndex},{PageRequest.PageSize})";
@@ -25,9 +26,9 @@ public class GetBudgetListQuery: IRequest<GetListResponse<GetListBudgetListItemD
             CancellationToken cancellationToken)
         {
             var budgets = await budgetRepository.GetListAsync(
-                index: request.PageRequest.PageIndex, 
+                index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize,
-                cancellationToken:cancellationToken, 
+                cancellationToken: cancellationToken,
                 include: b => b.Include(src => src.AppUser),
                 enableTracking: false);
 

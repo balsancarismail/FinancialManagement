@@ -1,9 +1,9 @@
 ﻿using Application.Features.Budget.Commands.Create;
 using Application.Features.Budget.Commands.Delete;
 using Application.Features.Budget.Commands.Update;
+using Application.Features.Budget.Queries.GetBudgetBreakdown;
 using Application.Features.Budget.Queries.GetById;
 using Application.Features.Budget.Queries.GetList;
-using Application.Features.Budget.Queries.GetUserBreakdown;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
 

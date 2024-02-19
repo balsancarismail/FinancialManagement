@@ -24,8 +24,6 @@ public class GetInvestmentPortfolioListQuery : IRequest<GetListResponse<GetListI
         : IRequestHandler<GetInvestmentPortfolioListQuery,
             GetListResponse<GetListInvestmentPortfolioListItemDto>>
     {
-
-
         public async Task<GetListResponse<GetListInvestmentPortfolioListItemDto>> Handle(
             GetInvestmentPortfolioListQuery request, CancellationToken cancellationToken)
         {

@@ -23,11 +23,12 @@ public class GetFinancialTransactionByIdQuery : IRequest<GetFinancialTransaction
         FinancialTransactionBusinessRules financialTransactionBusinessRules)
         : IRequestHandler<GetFinancialTransactionByIdQuery, GetFinancialTransactionByIdResponse>
     {
-
         public async Task<GetFinancialTransactionByIdResponse> Handle(GetFinancialTransactionByIdQuery request,
             CancellationToken cancellationToken)
         {
-            var financialTransaction = await financialTransactionRepository.GetAsync(predicate: b => b.Id == request.Id, enableTracking: false, cancellationToken: cancellationToken, include: src => src.Include(b => b.Category));
+            var financialTransaction = await financialTransactionRepository.GetAsync(b => b.Id == request.Id,
+                enableTracking: false, cancellationToken: cancellationToken,
+                include: src => src.Include(b => b.Category));
             await financialTransactionBusinessRules.FinancialTransactionMustNotBeNull(financialTransaction);
 
             return mapper.Map<GetFinancialTransactionByIdResponse>(financialTransaction);

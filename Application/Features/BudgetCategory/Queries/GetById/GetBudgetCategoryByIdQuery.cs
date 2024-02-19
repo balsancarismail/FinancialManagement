@@ -24,11 +24,11 @@ public class GetBudgetCategoryByIdQuery : IRequest<GetBudgetCategoryByIdResponse
             BudgetCategoryBusinessRules budgetCategoryBusinessRules)
         : IRequestHandler<GetBudgetCategoryByIdQuery, GetBudgetCategoryByIdResponse>
     {
-
         public async Task<GetBudgetCategoryByIdResponse> Handle(GetBudgetCategoryByIdQuery request,
             CancellationToken cancellationToken)
         {
-            var budgetCategory = await budgetCategoryRepository.GetAsync(predicate: b => b.Id == request.Id, enableTracking: false, cancellationToken: cancellationToken, include: b=> b.Include(src => src.Category));
+            var budgetCategory = await budgetCategoryRepository.GetAsync(b => b.Id == request.Id, enableTracking: false,
+                cancellationToken: cancellationToken, include: b => b.Include(src => src.Category));
 
             budgetCategoryBusinessRules.BudgetCategoryMustBeExists(budgetCategory);
             return mapper.Map<GetBudgetCategoryByIdResponse>(budgetCategory);

@@ -1,5 +1,4 @@
 ﻿using Application.Features.Budget.Constants;
-using Application.Features.BudgetCategory.Constants;
 using Application.Services.Repositories;
 using Core.CrossCuttingConcerns.Exceptions.Types;
 using Core.Persistence.Paging;
@@ -20,8 +19,10 @@ public class BudgetBusinessRules(IBudgetRepository budgetRepository)
         if (budget == null) throw new BusinessException(BudgetMessages.BudgetNotFound);
     }
 
-    public void FinancialTransactionDataMustBeExists(Paginate<Domain.Entities.FinancialTransaction> financialTransactionPaginate)
+    public void FinancialTransactionDataMustBeExists(
+        Paginate<Domain.Entities.FinancialTransaction> financialTransactionPaginate)
     {
-        if (financialTransactionPaginate is null || !financialTransactionPaginate.Items.Any()) throw new BusinessException(BudgetMessages.FinancialTransactionNotFound);
+        if (financialTransactionPaginate is null || !financialTransactionPaginate.Items.Any())
+            throw new BusinessException(BudgetMessages.FinancialTransactionNotFound);
     }
 }

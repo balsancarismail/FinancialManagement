@@ -1,5 +1,5 @@
-﻿using Domain.Enums;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using Domain.Enums;
 
 namespace Application.Features.Category.Queries.GetList;
 

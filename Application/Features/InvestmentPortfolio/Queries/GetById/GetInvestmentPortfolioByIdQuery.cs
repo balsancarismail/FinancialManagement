@@ -7,7 +7,8 @@ using MediatR;
 
 namespace Application.Features.InvestmentPortfolio.Queries.GetById;
 
-public class GetInvestmentPortfolioByIdQuery : IRequest<GetInvestmentPortfolioByIdResponse>, ICachableRequest, ILoggableRequest
+public class GetInvestmentPortfolioByIdQuery : IRequest<GetInvestmentPortfolioByIdResponse>, ICachableRequest,
+    ILoggableRequest
 {
     public int Id { get; set; }
 
@@ -24,11 +25,11 @@ public class GetInvestmentPortfolioByIdQuery : IRequest<GetInvestmentPortfolioBy
         : IRequestHandler<GetInvestmentPortfolioByIdQuery,
             GetInvestmentPortfolioByIdResponse>
     {
-
         public async Task<GetInvestmentPortfolioByIdResponse> Handle(GetInvestmentPortfolioByIdQuery request,
             CancellationToken cancellationToken)
         {
-            var investmenPortfolio = await investmentPortfolioRepository.GetAsync(predicate: b => b.Id == request.Id, enableTracking: false, cancellationToken: cancellationToken);
+            var investmenPortfolio = await investmentPortfolioRepository.GetAsync(b => b.Id == request.Id,
+                enableTracking: false, cancellationToken: cancellationToken);
             await investmentPortfolioBusinessRules.InvestmentPortfolioMustNotBeNull(investmenPortfolio);
 
             return mapper.Map<GetInvestmentPortfolioByIdResponse>(investmenPortfolio);

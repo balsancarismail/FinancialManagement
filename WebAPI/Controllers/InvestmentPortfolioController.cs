@@ -1,8 +1,8 @@
-﻿using Application.Features.Category.Queries.GetList;
-using Application.Features.InvestmentPortfolio.Commands.Create;
+﻿using Application.Features.InvestmentPortfolio.Commands.Create;
 using Application.Features.InvestmentPortfolio.Commands.Delete;
 using Application.Features.InvestmentPortfolio.Commands.Update;
 using Application.Features.InvestmentPortfolio.Queries.GetById;
+using Application.Features.InvestmentPortfolio.Queries.GetInvestmentPortfolioBreakdown;
 using Application.Features.InvestmentPortfolio.Queries.GetListInvestmentPortfolio;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
@@ -48,8 +48,16 @@ public class InvestmentPortfolioController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetInvestmentPortfolioList([FromQuery] PageRequest pageRequest)
     {
-        var query = new GetInvestmentPortfolioListQuery() { PageRequest = pageRequest };
+        var query = new GetInvestmentPortfolioListQuery { PageRequest = pageRequest };
         var result = await Mediator.Send(query);
         return Ok(result);
+    }
+
+    [HttpGet("breakdown/{id}")]
+    public async Task<IActionResult> GetBudgetBreakdown(int id)
+    {
+        var query = new GetInvestmentPortfolioBreakdownQuery { Id = id };
+        var response = await Mediator.Send(query);
+        return Ok(response);
     }
 }

@@ -15,11 +15,14 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Domain.Entities.Category, CreateCategoryCommand>().ReverseMap()
-            .ForMember(destinationMember: dest => dest.CategoryType, memberOptions: opt => opt.MapFrom(src => Enum.Parse<CategoryType>(src.CategoryType.ToString())));
+            .ForMember(dest => dest.CategoryType,
+                opt => opt.MapFrom(src => Enum.Parse<CategoryType>(src.CategoryType.ToString())));
         CreateMap<CreateCategoryResponse, Domain.Entities.Category>().ReverseMap();
 
         CreateMap<Domain.Entities.Category, UpdateCategoryCommand>().ReverseMap()
-            .ForMember(destinationMember: dest => dest.CategoryType, memberOptions: opt => opt.MapFrom(src => Enum.Parse<CategoryType>(src.CategoryType.ToString()))); ;
+            .ForMember(dest => dest.CategoryType,
+                opt => opt.MapFrom(src => Enum.Parse<CategoryType>(src.CategoryType.ToString())));
+        ;
         CreateMap<Domain.Entities.Category, UpdateCategoryResponse>().ReverseMap();
 
         CreateMap<Domain.Entities.Category, DeleteCategoryResponse>().ReverseMap();
@@ -28,7 +31,6 @@ public class MappingProfile : Profile
 
         CreateMap<Domain.Entities.Category, GetListCategoryListItemDto>().ReverseMap();
         CreateMap<Paginate<Domain.Entities.Category>, GetListResponse<GetListCategoryListItemDto>>().ReverseMap();
-
 
 
         CreateMap<Domain.Entities.Category, Domain.Entities.Category>()

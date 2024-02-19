@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Application.Features.Investment.Rules;
 using Application.Services.InvestmentPortfolioService;
 using Application.Services.Repositories;
@@ -51,7 +50,7 @@ public class UpdateInvestmentCommand : IRequest<UpdateInvestmentResponse>, ICach
 
             if (investment.Amount != investmentEntity.Amount)
             {
-                decimal changePercentage = (decimal)(random.NextDouble() * 0.2 - 0.1);
+                var changePercentage = (decimal)(random.NextDouble() * 0.2 - 0.1);
                 investment.RandomProfitOrLoss = investment.Amount - changePercentage * request.Amount;
             }
 

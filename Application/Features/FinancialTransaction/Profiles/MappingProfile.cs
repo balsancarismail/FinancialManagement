@@ -15,20 +15,21 @@ public class MappingProfile : Profile
     {
         CreateMap<Domain.Entities.FinancialTransaction, CreateFinancialTransactionCommand>().ReverseMap();
         CreateMap<Domain.Entities.FinancialTransaction, CreateFinancialTransactionResponse>().ReverseMap();
-        
+
         CreateMap<Domain.Entities.FinancialTransaction, UpdateFinancialTransactionCommand>().ReverseMap();
         CreateMap<Domain.Entities.FinancialTransaction, UpdateFinancialTransactionResponse>().ReverseMap();
 
         CreateMap<Domain.Entities.FinancialTransaction, DeleteFinancialTransactionResponse>().ReverseMap();
 
         CreateMap<Domain.Entities.FinancialTransaction, GetFinancialTransactionByIdResponse>()
-            .ForMember(destinationMember: dest => dest.CategoryName, memberOptions: opt => opt.MapFrom(src => src.Category.Name)).ReverseMap();
+            .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name)).ReverseMap();
 
         CreateMap<Domain.Entities.FinancialTransaction, GetListFinancialTransactionByUserOrCategoryListItemDto>()
-            .ForMember(destinationMember: dest => dest.CategoryName, memberOptions: opt => opt.MapFrom(src => src.Category.Name)).ReverseMap();
+            .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name)).ReverseMap();
 
-        CreateMap<Paginate<Domain.Entities.FinancialTransaction>, GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>>();
-        
+        CreateMap<Paginate<Domain.Entities.FinancialTransaction>,
+            GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>>();
+
         CreateMap<Domain.Entities.FinancialTransaction, Domain.Entities.FinancialTransaction>()
             .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())
             .ForMember(dest => dest.UpdatedDate, opt => opt.Ignore())

@@ -8,7 +8,8 @@ using MediatR;
 
 namespace Application.Features.Category.Queries.GetList;
 
-public class GetCategoryListQuery : IRequest<GetListResponse<GetListCategoryListItemDto>>, ILoggableRequest, ICachableRequest
+public class GetCategoryListQuery : IRequest<GetListResponse<GetListCategoryListItemDto>>, ILoggableRequest,
+    ICachableRequest
 {
     public PageRequest PageRequest { get; set; }
     public string CacheKey => $"GetCategoryList({PageRequest.PageIndex},{PageRequest.PageSize})";
@@ -20,16 +21,14 @@ public class GetCategoryListQuery : IRequest<GetListResponse<GetListCategoryList
         GetCategoryListQueryHandler(ICategoryRepository categoryRepository, IMapper mapper)
         : IRequestHandler<GetCategoryListQuery, GetListResponse<GetListCategoryListItemDto>>
     {
-
-
         public async Task<GetListResponse<GetListCategoryListItemDto>> Handle(GetCategoryListQuery request,
             CancellationToken cancellationToken)
         {
             var result = await categoryRepository.GetListAsync(
-                               index: request.PageRequest.PageIndex,
-                                              size: request.PageRequest.PageSize,
-                                              cancellationToken: cancellationToken,
-                                              enableTracking: false);
+                index: request.PageRequest.PageIndex,
+                size: request.PageRequest.PageSize,
+                cancellationToken: cancellationToken,
+                enableTracking: false);
 
             var categoryList = mapper.Map<GetListResponse<GetListCategoryListItemDto>>(result);
 

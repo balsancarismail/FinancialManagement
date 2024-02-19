@@ -48,9 +48,10 @@ public class FinancialTransactionsController : BaseController
 
     [HttpGet]
     public async Task<ActionResult<GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>>>
-        GetListByUserOrCategory([FromQuery] PageRequest pageRequest, [FromQuery] int? AppUserId, [FromQuery] int? categoryId)
+        GetListByUserOrCategory([FromQuery] PageRequest pageRequest, [FromQuery] int? AppUserId,
+            [FromQuery] int? categoryId)
     {
-        var ok = await Mediator.Send(new GetFinancialTransactionByUserOrCategoryListQuery()
+        var ok = await Mediator.Send(new GetFinancialTransactionByUserOrCategoryListQuery
         {
             AppUserId = AppUserId,
             CategoryId = categoryId,

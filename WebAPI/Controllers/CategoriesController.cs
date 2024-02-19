@@ -46,7 +46,7 @@ public class CategoriesController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetCategoryList([FromQuery] PageRequest pageRequest)
     {
-        var query = new GetCategoryListQuery(){PageRequest = pageRequest};
+        var query = new GetCategoryListQuery { PageRequest = pageRequest };
         var result = await Mediator.Send(query);
         return Ok(result);
     }
