@@ -9,4 +9,5 @@ public class AuthMessages
     public static string RegistrationFailed = "Registration failed.";
     public static string RefreshExpired = "Refresh token expired.";
     public static string RefreshRevoked = "Refresh token expired.";
+    public static string RoleDontExists = "Role don't exists.";
 }

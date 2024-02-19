@@ -46,4 +46,11 @@ public class UserBusinessRules(UserManager<AppUser> userManager)
         if (doesExists)
             throw new BusinessException(AuthMessages.UserMailAlreadyExists);
     }
+
+    public async Task RoleMustBeExists(string role)
+    {
+        
+        if (!ConstantRoles.Roles.Contains(role))
+            throw new BusinessException(AuthMessages.RoleDontExists);
+    }
 }

@@ -7,32 +7,34 @@ using Core.Security.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using static Application.Features.Auth.Constants.ConstantRoles;
 
 namespace Application.Features.Users.Commands.Create;
 
 public class CreateUserCommand : IRequest<CreatedUserResponse>, ITransactionalRequest
 {
-    public CreateUserCommand()
+    public CreateUserCommand(string role)
     {
+        Role = role;
         FirstName = string.Empty;
         LastName = string.Empty;
         Email = string.Empty;
         Password = string.Empty;
     }
 
-    public CreateUserCommand(string firstName, string lastName, string email, string password)
+    public CreateUserCommand(string firstName, string lastName, string email, string password, string role)
     {
         FirstName = firstName;
         LastName = lastName;
         Email = email;
         Password = password;
+        Role = role;
     }
 
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
+    public string Role { get; set; }
 
     //public string[] Roles => new[] { Admin, Write, Add };
 
@@ -46,7 +48,6 @@ public class CreateUserCommand : IRequest<CreatedUserResponse>, ITransactionalRe
         {
             await userBusinessRules.UserEmailShouldNotExistsWhenInsert(request.Email);
             var user = mapper.Map<AppUser>(request);
-
             var identityResult = await userManager.CreateAsync(user, request.Password);
 
             if (identityResult.Succeeded)
@@ -54,12 +55,13 @@ public class CreateUserCommand : IRequest<CreatedUserResponse>, ITransactionalRe
                 var createdUser =
                     await userManager.Users.SingleOrDefaultAsync(x => x.Email == request.Email.Trim().Normalize(),
                         cancellationToken);
-                if (createdUser == null) throw new BusinessException(AuthMessages.RegistrationFailed);
-                await userManager.AddToRoleAsync(createdUser, USER);
+                await userBusinessRules.UserShouldBeExistsWhenSelected(createdUser);
+                await userBusinessRules.RoleMustBeExists(request.Role);
+
+                await userManager.AddToRoleAsync(createdUser, request.Role);
                 var response = mapper.Map<CreatedUserResponse>(createdUser);
                 return response;
             }
-
             throw new BusinessException(AuthMessages.RegistrationFailed);
         }
     }
