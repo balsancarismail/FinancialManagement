@@ -14,4 +14,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /publish .
 ENV ASPNETCORE_URLS="http://*:5000"
-ENTRYPOINT [ "dotnet" , "WebAPI" ]
+ENTRYPOINT [ "dotnet" , "WebAPI.dll" ]
