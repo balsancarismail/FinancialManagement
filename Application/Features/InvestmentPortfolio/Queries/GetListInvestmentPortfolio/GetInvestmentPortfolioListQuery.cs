@@ -1,15 +1,17 @@
 ﻿using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Requests;
 using Core.Application.Responses;
 using MediatR;
+using static Application.Features.Auth.Constants.ConstantRoles;
 
 namespace Application.Features.InvestmentPortfolio.Queries.GetListInvestmentPortfolio;
 
 public class GetInvestmentPortfolioListQuery : IRequest<GetListResponse<GetListInvestmentPortfolioListItemDto>>,
-    ICachableRequest, ILoggableRequest
+    ICachableRequest, ILoggableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; init; }
 
@@ -17,6 +19,7 @@ public class GetInvestmentPortfolioListQuery : IRequest<GetListResponse<GetListI
     public string CacheGroupKey => "GetInvestmentPortfolio";
     public TimeSpan? SlidingExpiration { get; init; }
     public bool BypassCache { get; set; }
+    public string[] Roles => new[] { FINANCIALANALYST };
 
     public class GetInvestmentPortfolioListQueryHandler(
         IInvestmentPortfolioRepository investmentPortfolioRepository,

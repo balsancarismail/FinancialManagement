@@ -21,7 +21,7 @@ public class GetBudgetBreakdownQuery : IRequest<GetBudgetBreakdownResponse>, ICa
     public bool BypassCache { get; }
     public string CacheGroupKey => "GetUserBreakdown";
     public TimeSpan? SlidingExpiration { get; init; }
-    [JsonIgnore] public string[] Roles => new[] { ACCOUNTANT };
+    public string[] Roles => new[] { ACCOUNTANT };
 
     public class GetUserBreakdownQueryHandler(
         IBudgetRepository budgetRepository,
@@ -53,7 +53,7 @@ public class GetBudgetBreakdownQuery : IRequest<GetBudgetBreakdownResponse>, ICa
             return response;
         }
 
-        private async Task<GetBudgetBreakdownResponse> AdjustBudgetSpend(
+        private Task<GetBudgetBreakdownResponse> AdjustBudgetSpend(
             IList<BudgetCategoryBreakdownDto> budgetCategoryBreakdownDtos, CancellationToken cancellationToken,
             Domain.Entities.Budget budget)
         {
@@ -70,8 +70,9 @@ public class GetBudgetBreakdownQuery : IRequest<GetBudgetBreakdownResponse>, ICa
                 TotalAimedSpentAmount = budget.BudgetCategories
                     .Where(x => x.Category.CategoryType == CategoryType.Expense).Sum(x => x.AllocatedAmount)
             };
-            return response;
+            return Task.FromResult(response);
         }
+
 
         private IList<BudgetCategoryBreakdownDto> AdjustBudgetCategorySpends(
             ICollection<Domain.Entities.BudgetCategory> budgetBudgetCategories,
@@ -90,7 +91,6 @@ public class GetBudgetBreakdownQuery : IRequest<GetBudgetBreakdownResponse>, ICa
                 dto.OperationsTotal = items!.Where(x => x.CategoryId == budgetCategory.CategoryId).Sum(x => x.Amount);
                 budgetCategoryBreakdownDtos.Add(dto);
             }
-
             return budgetCategoryBreakdownDtos;
         }
     }

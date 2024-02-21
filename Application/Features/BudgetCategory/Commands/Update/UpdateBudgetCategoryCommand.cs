@@ -26,7 +26,7 @@ public class UpdateBudgetCategoryCommand : IRequest<UpdateBudgetCategoryResponse
 
     [JsonIgnore] public string CacheGroupKey => "GetBudgetCategory";
 
-    [JsonIgnore] public string[] Roles => new[] { USER };
+    [JsonIgnore] public string[] Roles => new[] { USER, ACCOUNTANT };
 
     public class
         UpdateBudgetCategoryCommandHandler(

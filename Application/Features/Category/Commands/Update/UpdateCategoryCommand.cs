@@ -25,7 +25,7 @@ public class UpdateCategoryCommand : IRequest<UpdateCategoryResponse>, ICacheRem
 
     [JsonIgnore] public string CacheGroupKey => "GetCategory";
 
-    [JsonIgnore] public string[] Roles => new[] { USER };
+    [JsonIgnore] public string[] Roles => new[] { ACCOUNTANT };
 
     public class UpdateCategoryCommandHandler(
         ICategoryRepository categoryRepository,

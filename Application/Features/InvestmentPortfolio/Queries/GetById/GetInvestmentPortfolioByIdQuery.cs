@@ -1,14 +1,17 @@
 ﻿using Application.Features.InvestmentPortfolio.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using MediatR;
+using static Application.Features.Auth.Constants.ConstantRoles;
 
 namespace Application.Features.InvestmentPortfolio.Queries.GetById;
 
 public class GetInvestmentPortfolioByIdQuery : IRequest<GetInvestmentPortfolioByIdResponse>, ICachableRequest,
-    ILoggableRequest
+    ILoggableRequest,
+    ISecuredRequest
 {
     public int Id { get; set; }
 
@@ -16,6 +19,7 @@ public class GetInvestmentPortfolioByIdQuery : IRequest<GetInvestmentPortfolioBy
     public string CacheGroupKey => "InvestmentPortfolio";
     public TimeSpan? SlidingExpiration { get; init; }
     public bool BypassCache { get; set; }
+    public string[] Roles => new[] { USER, FINANCIALANALYST };
 
     public class
         GetInvestmentPortfolioByIdQueryHandler(
