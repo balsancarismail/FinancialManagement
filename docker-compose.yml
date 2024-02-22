@@ -8,7 +8,6 @@ services:
     depends_on:
       - db
     environment:
-      - ConnectionStrings__DefaultConnection=Server=db;Database=MyDatabase;User=sa;Password=finman123*;
     networks:
       - appnetwork
 
@@ -20,7 +19,10 @@ services:
     ports:
       - "1433:1433"
     volumes:
+      - ./init.sql:/scripts/init.sql
+      - ./entrypoint.sh:/scripts/entrypoint.sh
       - mssql-data:/var/opt/mssql # MSSQL veritabanı verileri için bir named volume kullan
+    command: /bin/bash /scripts/entrypoint.sh
     networks:
       - appnetwork
 
