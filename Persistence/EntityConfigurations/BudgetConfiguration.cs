@@ -24,17 +24,6 @@ public class BudgetConfiguration : IEntityTypeConfiguration<Budget>
         builder.HasMany(b => b.BudgetCategories)
             .WithOne(b => b.Budget).OnDelete(DeleteBehavior.NoAction);
 
-        builder.HasData(
-            [
-                new Budget
-                {
-                    Id = 1,
-                    AppUserId = 2,
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now.AddMonths(1),
-                    CreatedDate = DateTime.Now
-                }
-            ]
-        );
+       
     }
 }
