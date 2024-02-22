@@ -87,22 +87,22 @@ app.UseExceptionMiddleware();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-using var scope = app.Services.CreateScope();
-
-var services = scope.ServiceProvider;
-var context = services.GetRequiredService<BaseDbContext>();
-
-var dbExists = context.Database.CanConnect();
-
-if (!dbExists)
+using (var scope = app.Services.CreateScope())
 {
-    context.Database.EnsureCreated();
-}
-else
-{
-    context.Database.Migrate();
-}
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<BaseDbContext>();
 
+    var dbExists = context.Database.CanConnect();
+
+    if (!dbExists)
+    {
+        context.Database.EnsureCreated();
+    }
+    else
+    {
+        context.Database.Migrate();
+    }
+}
 
 app.UseHttpsRedirection();
 
