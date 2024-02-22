@@ -1,0 +1,33 @@
+services:
+  webapp:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./appdata:/app/data # Host makinedeki './appdata' dizinini container'daki '/app/data' dizinine bağla
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=MyDatabase;User=sa;Password=finman123*;
+    networks:
+      - appnetwork
+
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+      SA_PASSWORD: "finman123*"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql # MSSQL veritabanı verileri için bir named volume kullan
+    networks:
+      - appnetwork
+
+networks:
+  appnetwork:
+    driver: bridge
+
+volumes:
+  mssql-data:
+    driver: local

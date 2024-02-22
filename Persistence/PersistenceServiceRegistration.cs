@@ -14,7 +14,7 @@ public static class PersistenceServiceRegistration
     {
         services.AddDbContext<BaseDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("RentACar"));
+            options.UseSqlServer(configuration.GetConnectionString("FinancialManagement"));
         });
 
         services.AddIdentityCore<AppUser>(options => { }).AddRoles<AppRole>().AddEntityFrameworkStores<BaseDbContext>();
