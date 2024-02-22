@@ -7,22 +7,13 @@ services:
       - ./appdata:/app/data # Host makinedeki './appdata' dizinini container'daki '/app/data' dizinine bağla
     depends_on:
       - db
-    environment:
     networks:
       - appnetwork
 
   db:
-    image: "mcr.microsoft.com/mssql/server"
-    environment:
-      SA_PASSWORD: "finman123*"
-      ACCEPT_EULA: "Y"
+    build: ./db
     ports:
-      - "1433:1433"
-    volumes:
-      - ./init.sql:/scripts/init.sql
-      - ./entrypoint.sh:/scripts/entrypoint.sh
-      - mssql-data:/var/opt/mssql # MSSQL veritabanı verileri için bir named volume kullan
-    command: /bin/bash /scripts/entrypoint.sh
+      - 1433:1433
     networks:
       - appnetwork
 
