@@ -83,7 +83,10 @@ builder.Services.AddSwaggerGen(opt =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.UseExceptionMiddleware();
+if (app.Environment.IsDevelopment())
+{
+    //app.UseExceptionMiddleware();
+}
 app.UseSwagger();
 app.UseSwaggerUI();
 /*
