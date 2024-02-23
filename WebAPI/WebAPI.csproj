@@ -46,4 +46,10 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+  	<Content Include="logs\**">
+  		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  	</Content>
+  </ItemGroup>
+
 </Project>
