@@ -12,22 +12,6 @@ pipeline {
                 checkout scm
             }
         }
-
-        stage('Build and Test') {
-            steps {
-                script {
-                    // Docker Compose ile uygulamanızı ve bağımlılıklarını başlatın
-                    sh 'docker-compose -f docker-compose.yml up -d --build'
-
-                    // Burada test komutlarınızı çalıştırın
-                    // Örneğin: sh 'docker-compose exec webapp dotnet test'
-
-                    // Docker Compose ile servisleri durdurun
-                    sh 'docker-compose down'
-                }
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 script {
