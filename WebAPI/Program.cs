@@ -89,7 +89,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseSwagger();
 app.UseSwaggerUI();
-/*
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -106,7 +106,7 @@ using (var scope = app.Services.CreateScope())
         context.Database.Migrate();
     }
 }
-*/
+
 //app.UseHttpsRedirection();
 
 app.UseAuthorization();
