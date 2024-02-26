@@ -4,6 +4,8 @@ pipeline {
     environment {
         DOCKER_HUB_CREDENTIALS_ID = 'dockerhub'
         IMAGE_NAME = 'snc22bx7/financial-management'
+        DISABLE_AUTH = 'true'
+        DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
     }
 
     stages {
@@ -16,6 +18,7 @@ pipeline {
             steps {
                 script {
                     docker.image('mcr.microsoft.com/dotnet/nightly/sdk:8.0').inside {
+                        echo "DISABLE_AUTH is ${DISABLE_AUTH}"
                         sh 'dotnet build --configuration Release'
                     }
                 }
