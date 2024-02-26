@@ -12,6 +12,14 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Build .NET Core Project') {
+            steps {
+                script {
+                    // .NET Core CLI kullanarak proje build işlemini gerçekleştir
+                    sh 'dotnet build --configuration Release'
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
