@@ -15,8 +15,9 @@ pipeline {
         stage('Build .NET Core Project') {
             steps {
                 script {
-                    // .NET Core CLI kullanarak proje build işlemini gerçekleştir
-                    sh 'dotnetBuild  --configuration Release'
+                    docker.image('mcr.microsoft.com/dotnet/sdk:4.8').inside {
+                        sh 'dotnet build --configuration Release'
+                    }
                 }
             }
         }
