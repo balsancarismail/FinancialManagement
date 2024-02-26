@@ -22,7 +22,7 @@ public class DeleteBudgetCommand : IRequest<DeleteBudgetResponse>, ICacheRemover
 
     [JsonIgnore] public string CacheGroupKey => "GetBudget";
 
-    [JsonIgnore] public string[] Roles => new[] { USER };
+    [JsonIgnore] public string[] Roles => new[] { USER, ACCOUNTANT };
 
     public class DeleteBudgetCommandHandler(
         IBudgetRepository budgetRepository,

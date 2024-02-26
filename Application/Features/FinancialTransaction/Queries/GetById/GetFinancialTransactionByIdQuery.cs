@@ -1,21 +1,25 @@
 ﻿using Application.Features.FinancialTransaction.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using static Application.Features.Auth.Constants.ConstantRoles;
 
 namespace Application.Features.FinancialTransaction.Queries.GetById;
 
 public class GetFinancialTransactionByIdQuery : IRequest<GetFinancialTransactionByIdResponse>, ILoggableRequest,
-    ICachableRequest
+    ICachableRequest,
+    ISecuredRequest
 {
     public int Id { get; set; }
     public string CacheKey => $"GetFinancialTransactionById({Id})";
     public bool BypassCache { get; }
     public string CacheGroupKey => "GetFinancialTransaction";
     public TimeSpan? SlidingExpiration { get; init; }
+    public string[] Roles => new[] { ACCOUNTANT, USER };
 
     public class GetFinancialTransactionByIdQueryHandler(
         IFinancialTransactionRepository financialTransactionRepository,

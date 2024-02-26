@@ -22,7 +22,7 @@ public class DeleteInvestmentPortfolioCommand : IRequest<DeleteInvestmentPortfol
 
     [JsonIgnore] public string CacheGroupKey => "GetInvsetmentPortfolio";
 
-    [JsonIgnore] public string[] Roles => new[] { USER };
+    [JsonIgnore] public string[] Roles => new[] { USER, FINANCIALANALYST };
 
     public class
         DeleteInvestmentPortfolioCommandHandler(

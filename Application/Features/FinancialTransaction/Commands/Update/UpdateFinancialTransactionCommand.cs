@@ -29,7 +29,7 @@ public class UpdateFinancialTransactionCommand : IRequest<UpdateFinancialTransac
 
     [JsonIgnore] public string CacheGroupKey => "GetFinancialTransaction";
 
-    [JsonIgnore] public string[] Roles => new[] { USER };
+    [JsonIgnore] public string[] Roles => new[] { USER, ACCOUNTANT };
 
     public class
         UpdateFinancialTransactionCommandHandler(

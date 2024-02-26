@@ -30,7 +30,7 @@ public class UpdateInvestmentCommand : IRequest<UpdateInvestmentResponse>, ICach
 
     [JsonIgnore] public string CacheGroupKey => "GetInvsetment";
 
-    [JsonIgnore] public string[] Roles => new[] { USER };
+    [JsonIgnore] public string[] Roles => new[] { USER, FINANCIALANALYST };
 
     public class
         UpdateInvestmentCommandHandler(

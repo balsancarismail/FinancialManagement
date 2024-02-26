@@ -1,15 +1,17 @@
 ﻿using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Requests;
 using Core.Application.Responses;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using static Application.Features.Auth.Constants.ConstantRoles;
 
 namespace Application.Features.Budget.Queries.GetList;
 
-public class GetBudgetListQuery : IRequest<GetListResponse<GetListBudgetListItemDto>>, ILoggableRequest,
+public class GetBudgetListQuery : IRequest<GetListResponse<GetListBudgetListItemDto>>, ILoggableRequest, ISecuredRequest,
     ICachableRequest
 {
     public PageRequest PageRequest { get; set; }
@@ -17,6 +19,7 @@ public class GetBudgetListQuery : IRequest<GetListResponse<GetListBudgetListItem
     public bool BypassCache { get; }
     public string CacheGroupKey => "GetBudget";
     public TimeSpan? SlidingExpiration { get; init; }
+    public string[] Roles => new[] { ACCOUNTANT };
 
     public class
         GetBudgetListQueryHandler(IBudgetRepository budgetRepository, IMapper mapper)

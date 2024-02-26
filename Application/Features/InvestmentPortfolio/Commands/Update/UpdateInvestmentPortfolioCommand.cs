@@ -25,7 +25,7 @@ public class UpdateInvestmentPortfolioCommand : IRequest<UpdateInvestmentPortfol
 
     [JsonIgnore] public string CacheGroupKey => "GetInvsetmentPortfolio";
 
-    [JsonIgnore] public string[] Roles => new[] { USER };
+    [JsonIgnore] public string[] Roles => new[] { USER, FINANCIALANALYST };
 
     public class
         UpdateInvestmentPortfolioCommandHandler(

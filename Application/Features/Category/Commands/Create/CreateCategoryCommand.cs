@@ -22,7 +22,7 @@ public class CreateCategoryCommand : IRequest<CreateCategoryResponse>, ICacheRem
 
     [JsonIgnore] public string CacheGroupKey => "GetCategory";
 
-    [JsonIgnore] public string[] Roles => new[] { USER };
+    [JsonIgnore] public string[] Roles => new[] { ACCOUNTANT };
 
     public class CreateCategoryCommandHandler(ICategoryRepository categoryRepository, IMapper mapper)
         : IRequestHandler<CreateCategoryCommand, CreateCategoryResponse>

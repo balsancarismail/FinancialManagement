@@ -2,18 +2,21 @@
 using Application.Features.FinancialTransaction.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Requests;
 using Core.Application.Responses;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using static Application.Features.Auth.Constants.ConstantRoles;
 
 namespace Application.Features.FinancialTransaction.Queries.GetListByUserOrCategory;
 
 public class GetFinancialTransactionByUserOrCategoryListQuery :
     IRequest<GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>>, ILoggableRequest,
-    ICachableRequest
+    ICachableRequest,
+    ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
     public int? AppUserId { get; set; }
@@ -22,6 +25,7 @@ public class GetFinancialTransactionByUserOrCategoryListQuery :
     public bool BypassCache { get; }
     public string CacheGroupKey => "GetFinancialTransaction";
     public TimeSpan? SlidingExpiration { get; init; }
+    public string[] Roles => new[] { ACCOUNTANT };
 
 
     public class GetFinancialTransactionByUserOrCategoryListQueryHandler(

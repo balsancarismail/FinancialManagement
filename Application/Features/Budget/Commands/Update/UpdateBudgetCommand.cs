@@ -25,7 +25,7 @@ public class UpdateBudgetCommand : IRequest<UpdateBudgetResponse>, ICacheRemover
 
     [JsonIgnore] public string CacheGroupKey => "GetBudget";
 
-    [JsonIgnore] public string[] Roles => new[] { USER };
+    [JsonIgnore] public string[] Roles => new[] { USER, ACCOUNTANT };
 
     public class UpdateBudgetCommandHandler(
         IMapper mapper,

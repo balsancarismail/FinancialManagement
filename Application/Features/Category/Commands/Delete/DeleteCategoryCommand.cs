@@ -22,7 +22,7 @@ public class DeleteCategoryCommand : IRequest<DeleteCategoryResponse>, ICacheRem
 
     [JsonIgnore] public string CacheGroupKey => "GetCategory";
 
-    [JsonIgnore] public string[] Roles => new[] { USER };
+    [JsonIgnore] public string[] Roles => new[] { ACCOUNTANT };
 
     public class DeleteCategoryCommandHandler(
         ICategoryRepository categoryRepository,

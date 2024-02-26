@@ -4,9 +4,11 @@ using Core.Security;
 using Core.Security.Encryiption;
 using Core.Security.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using Persistence.Contexts;
 using WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -83,15 +85,29 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseExceptionMiddleware();
 }
-else
+app.UseSwagger();
+app.UseSwaggerUI();
+
+using (var scope = app.Services.CreateScope())
 {
-    app.UseExceptionMiddleware();
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<BaseDbContext>();
+
+    var dbExists = context.Database.CanConnect();
+
+    if (!dbExists)
+    {
+        context.Database.EnsureCreated();
+    }
+    else
+    {
+        context.Database.Migrate();
+    }
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

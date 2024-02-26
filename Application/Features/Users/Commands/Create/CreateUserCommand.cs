@@ -12,23 +12,6 @@ namespace Application.Features.Users.Commands.Create;
 
 public class CreateUserCommand : IRequest<CreatedUserResponse>, ITransactionalRequest
 {
-    public CreateUserCommand(string role)
-    {
-        Role = role;
-        FirstName = string.Empty;
-        LastName = string.Empty;
-        Email = string.Empty;
-        Password = string.Empty;
-    }
-
-    public CreateUserCommand(string firstName, string lastName, string email, string password, string role)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-        Email = email;
-        Password = password;
-        Role = role;
-    }
 
     public string FirstName { get; set; }
     public string LastName { get; set; }
