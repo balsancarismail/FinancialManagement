@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     // .NET Core CLI kullanarak proje build işlemini gerçekleştir
-                    sh 'dotnet build --configuration Release'
+                    sh 'dotnetBuild  --configuration Release'
                 }
             }
         }
