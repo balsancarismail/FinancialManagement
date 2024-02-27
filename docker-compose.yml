@@ -1,6 +1,6 @@
 services:
   webapp:
-    build: .
+    build: "snc22bx7/financial-management:1930404"
     ports:
       - "8080:8080"
       - "8081:8081"
@@ -8,7 +8,6 @@ services:
       - ./appdata:/app/data # Host makinedeki './appdata' dizinini container'daki '/app/data' dizinine bağla
     depends_on:
       - db
-    environment:
     networks:
       - appnetwork
 
