@@ -26,8 +26,7 @@ public class DeleteCategoryCommand : IRequest<DeleteCategoryResponse>, ICacheRem
 
     public class DeleteCategoryCommandHandler(
         ICategoryRepository categoryRepository,
-        IMapper mapper,
-        CategoryBusinessRules categoryBusiness)
+        IMapper mapper)
         : IRequestHandler<DeleteCategoryCommand, DeleteCategoryResponse>
     {
         public async Task<DeleteCategoryResponse> Handle(DeleteCategoryCommand request,

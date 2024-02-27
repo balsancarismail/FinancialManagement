@@ -35,7 +35,7 @@ public class UpdateFinancialTransactionCommand : IRequest<UpdateFinancialTransac
         UpdateFinancialTransactionCommandHandler(
             IMapper mapper,
             IFinancialTransactionRepository financialTransactionRepository,
-            FinancialTransactionBusinessRules financialTransactionBusinessRules,
+            IFinancialTransactionBusinessRules financialTransactionBusinessRules,
             ICategoryService categoryService)
         : IRequestHandler<UpdateFinancialTransactionCommand,
             UpdateFinancialTransactionResponse>

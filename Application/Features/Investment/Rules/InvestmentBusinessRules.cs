@@ -3,7 +3,7 @@ using Core.CrossCuttingConcerns.Exceptions.Types;
 
 namespace Application.Features.Investment.Rules;
 
-public class InvestmentBusinessRules
+public class InvestmentBusinessRules : IInvestmentBusinessRules
 {
     public void InvestmentPortfolioMustBeExists(Domain.Entities.InvestmentPortfolio investmentPortfolio)
     {

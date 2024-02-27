@@ -26,7 +26,7 @@ public class DeleteBudgetCommand : IRequest<DeleteBudgetResponse>, ICacheRemover
 
     public class DeleteBudgetCommandHandler(
         IBudgetRepository budgetRepository,
-        BudgetBusinessRules budgetBusinessRules,
+        IBudgetBusinessRules budgetBusinessRules,
         IMapper mapper)
         : IRequestHandler<DeleteBudgetCommand, DeleteBudgetResponse>
     {

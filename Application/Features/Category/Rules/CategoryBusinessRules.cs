@@ -3,7 +3,7 @@ using Core.CrossCuttingConcerns.Exceptions.Types;
 
 namespace Application.Features.Category.Rules;
 
-public class CategoryBusinessRules
+public class CategoryBusinessRules : ICategoryBusinessRules
 {
     public Task CategoryMustNotBeNull(Domain.Entities.Category category)
     {

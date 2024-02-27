@@ -27,7 +27,7 @@ public class DeleteInvestmentCommand : IRequest<DeleteInvestmentResponse>, ICach
     public class
         DeleteInvestmentCommandHandler(
             IInvestmentRepository investmentRepository,
-            InvestmentBusinessRules investmentBusinessRules,
+            IInvestmentBusinessRules investmentBusinessRules,
             IMapper mapper)
         : IRequestHandler<DeleteInvestmentCommand, DeleteInvestmentResponse>
     {

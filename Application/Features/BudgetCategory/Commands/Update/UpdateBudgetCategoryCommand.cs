@@ -32,7 +32,7 @@ public class UpdateBudgetCategoryCommand : IRequest<UpdateBudgetCategoryResponse
         UpdateBudgetCategoryCommandHandler(
             IBudgetCategoryRepository budgetCategoryRepository,
             ICategoryService categoryService,
-            BudgetCategoryBusinessRules budgetCategoryBusinessRules)
+            IBudgetCategoryBusinessRules budgetCategoryBusinessRules)
         : IRequestHandler<UpdateBudgetCategoryCommand, UpdateBudgetCategoryResponse>
     {
         public async Task<UpdateBudgetCategoryResponse> Handle(UpdateBudgetCategoryCommand request,

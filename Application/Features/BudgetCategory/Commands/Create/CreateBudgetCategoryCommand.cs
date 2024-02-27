@@ -33,7 +33,7 @@ public class CreateBudgetCategoryCommand : IRequest<CreateBudgetCategoryResponse
             IBudgetCategoryRepository budgetCategoryRepository,
             IBudgetService budgetService,
             ICategoryService categoryService,
-            BudgetCategoryBusinessRules budgetCategoryBusinessRules)
+            IBudgetCategoryBusinessRules budgetCategoryBusinessRules)
         : IRequestHandler<CreateBudgetCategoryCommand, CreateBudgetCategoryResponse>
     {
         public async Task<CreateBudgetCategoryResponse> Handle(CreateBudgetCategoryCommand request,

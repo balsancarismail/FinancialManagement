@@ -26,8 +26,7 @@ public class GetBudgetBreakdownQuery : IRequest<GetBudgetBreakdownResponse>, ICa
     public class GetUserBreakdownQueryHandler(
         IBudgetRepository budgetRepository,
         IFinancialTransactionService financialTransactionService,
-        IMapper mapper,
-        BudgetBusinessRules budgetBusinessRules)
+        IBudgetBusinessRules budgetBusinessRules)
         : IRequestHandler<GetBudgetBreakdownQuery, GetBudgetBreakdownResponse>
     {
         public async Task<GetBudgetBreakdownResponse> Handle(GetBudgetBreakdownQuery request,

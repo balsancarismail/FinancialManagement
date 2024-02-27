@@ -30,7 +30,7 @@ public class UpdateCategoryCommand : IRequest<UpdateCategoryResponse>, ICacheRem
     public class UpdateCategoryCommandHandler(
         ICategoryRepository categoryRepository,
         IMapper mapper,
-        CategoryBusinessRules categoryBusiness)
+        ICategoryBusinessRules categoryBusiness)
         : IRequestHandler<UpdateCategoryCommand, UpdateCategoryResponse>
     {
         public async Task<UpdateCategoryResponse> Handle(UpdateCategoryCommand request,

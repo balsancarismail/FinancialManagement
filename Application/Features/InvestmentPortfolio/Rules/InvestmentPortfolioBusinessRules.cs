@@ -3,7 +3,7 @@ using Core.CrossCuttingConcerns.Exceptions.Types;
 
 namespace Application.Features.InvestmentPortfolio.Rules;
 
-public class InvestmentPortfolioBusinessRules
+public class InvestmentPortfolioBusinessRules : IInvestmentPortfolioBusinessRules
 {
     public Task InvestmentPortfolioMustNotBeNull(Domain.Entities.InvestmentPortfolio investmentPortfolio)
     {

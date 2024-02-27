@@ -26,7 +26,7 @@ public class DeleteBudgetCategoryCommand : IRequest<DeleteBudgetCategoryResponse
 
     public class DeleteBudgetCategoryCommandHandler(
         IBudgetCategoryRepository budgetCategoryRepository,
-        BudgetCategoryBusinessRules budgetCategoryBusinessRules)
+        IBudgetCategoryBusinessRules budgetCategoryBusinessRules)
         : IRequestHandler<DeleteBudgetCategoryCommand, DeleteBudgetCategoryResponse>
     {
         public async Task<DeleteBudgetCategoryResponse> Handle(DeleteBudgetCategoryCommand request,

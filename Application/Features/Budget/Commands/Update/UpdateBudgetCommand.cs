@@ -29,8 +29,7 @@ public class UpdateBudgetCommand : IRequest<UpdateBudgetResponse>, ICacheRemover
 
     public class UpdateBudgetCommandHandler(
         IMapper mapper,
-        IBudgetRepository budgetRepository,
-        BudgetBusinessRules budgetBusinessRules) : IRequestHandler<UpdateBudgetCommand, UpdateBudgetResponse>
+        IBudgetRepository budgetRepository) : IRequestHandler<UpdateBudgetCommand, UpdateBudgetResponse>
     {
         public async Task<UpdateBudgetResponse> Handle(UpdateBudgetCommand request, CancellationToken cancellationToken)
         {

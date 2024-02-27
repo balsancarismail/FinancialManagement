@@ -31,7 +31,7 @@ public class GetFinancialTransactionByUserOrCategoryListQuery :
     public class GetFinancialTransactionByUserOrCategoryListQueryHandler(
         IFinancialTransactionRepository financialTransactionRepository,
         IMapper mapper,
-        FinancialTransactionBusinessRules businessRules)
+        IFinancialTransactionBusinessRules businessRules)
         : IRequestHandler<
             GetFinancialTransactionByUserOrCategoryListQuery,
             GetListResponse<GetListFinancialTransactionByUserOrCategoryListItemDto>>

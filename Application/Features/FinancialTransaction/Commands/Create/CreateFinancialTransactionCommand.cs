@@ -37,7 +37,7 @@ public class CreateFinancialTransactionCommand : IRequest<CreateFinancialTransac
             IMapper mapper,
             IFinancialTransactionRepository financialTransactionRepository,
             IHttpContextAccessor httpContextAccessor,
-            FinancialTransactionBusinessRules financialTransactionBusinessRules,
+            IFinancialTransactionBusinessRules financialTransactionBusinessRules,
             ICategoryService categoryService,
             UserManager<AppUser> userManager) : IRequestHandler<CreateFinancialTransactionCommand,
         CreateFinancialTransactionResponse>

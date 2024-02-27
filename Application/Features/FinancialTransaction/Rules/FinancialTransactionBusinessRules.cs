@@ -3,7 +3,7 @@ using Core.CrossCuttingConcerns.Exceptions.Types;
 
 namespace Application.Features.FinancialTransaction.Rules;
 
-public class FinancialTransactionBusinessRules
+public class FinancialTransactionBusinessRules : IFinancialTransactionBusinessRules
 {
     public Task FinancialTransactionMustNotBeNull(Domain.Entities.FinancialTransaction financialTransaction)
     {

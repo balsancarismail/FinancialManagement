@@ -25,7 +25,7 @@ public class GetInvestmentByIdQuery : IRequest<GetInvestmentByIdResponse>, ILogg
     public class GetInvestmentByIdQueryHandler(
         IInvestmentRepository investmentRepository,
         IMapper mapper,
-        InvestmentBusinessRules investmentBusinessRules)
+        IInvestmentBusinessRules investmentBusinessRules)
         : IRequestHandler<GetInvestmentByIdQuery, GetInvestmentByIdResponse>
     {
         public async Task<GetInvestmentByIdResponse> Handle(GetInvestmentByIdQuery request,

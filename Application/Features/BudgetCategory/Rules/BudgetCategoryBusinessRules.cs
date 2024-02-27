@@ -3,7 +3,7 @@ using Core.CrossCuttingConcerns.Exceptions.Types;
 
 namespace Application.Features.BudgetCategory.Rules;
 
-public class BudgetCategoryBusinessRules
+public class BudgetCategoryBusinessRules: IBudgetCategoryBusinessRules
 {
     public void CategoryMustBeExists(Domain.Entities.Category category)
     {

@@ -24,7 +24,7 @@ public class GetByIdBudgetQuery : IRequest<GetByIdBudgetResponse>, ILoggableRequ
     public class GetByIdBudgetQueryHandler(
         IBudgetRepository budgetRepository,
         IMapper mapper,
-        BudgetBusinessRules budgetBusinessRules)
+        IBudgetBusinessRules budgetBusinessRules)
         : IRequestHandler<GetByIdBudgetQuery, GetByIdBudgetResponse>
     {
         public async Task<GetByIdBudgetResponse> Handle(GetByIdBudgetQuery request, CancellationToken cancellationToken)

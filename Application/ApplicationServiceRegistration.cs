@@ -25,7 +25,7 @@ public static class ApplicationServiceRegistration
                 var name = type.Name;
                 return name.EndsWith("BusinessRules");
             }))
-            .AsSelf()
+            .AsImplementedInterfaces()
             .WithScopedLifetime()
         );
         services.Scan(scan => scan

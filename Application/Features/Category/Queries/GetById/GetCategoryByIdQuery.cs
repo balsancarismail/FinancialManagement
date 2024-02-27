@@ -21,7 +21,7 @@ public class GetCategoryByIdQuery : IRequest<GetCategoryByIdResponse>, ILoggable
     public class GetCategoryByIdQueryHandler(
         ICategoryRepository categoryRepository,
         IMapper mapper,
-        CategoryBusinessRules categoryBusinessRules)
+        ICategoryBusinessRules categoryBusinessRules)
         : IRequestHandler<GetCategoryByIdQuery, GetCategoryByIdResponse>
     {
         public async Task<GetCategoryByIdResponse> Handle(GetCategoryByIdQuery request,

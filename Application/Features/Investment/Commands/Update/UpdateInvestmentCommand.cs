@@ -36,7 +36,7 @@ public class UpdateInvestmentCommand : IRequest<UpdateInvestmentResponse>, ICach
         UpdateInvestmentCommandHandler(
             IInvestmentRepository investmentRepository,
             IInvestmentPortfolioService investmentPortfolioService,
-            InvestmentBusinessRules investmentBusinessRules,
+            IInvestmentBusinessRules investmentBusinessRules,
             IMapper mapper,
             Random random)
         : IRequestHandler<UpdateInvestmentCommand, UpdateInvestmentResponse>

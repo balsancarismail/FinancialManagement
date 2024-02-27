@@ -1,8 +1,9 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Features.Category.Commands.Create;
 using Application.Services.Repositories;
 
-namespace Application.Features.Category.Commands.Create.Tests
+namespace Tests.Category
 {
     public class CreateCategoryCommandTests
     {

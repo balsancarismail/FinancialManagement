@@ -31,7 +31,7 @@ public class UpdateInvestmentPortfolioCommand : IRequest<UpdateInvestmentPortfol
         UpdateInvestmentPortfolioCommandHandler(
             IMapper mapper,
             IInvestmentPortfolioRepository investmentPortfolioRepository,
-            InvestmentPortfolioBusinessRules investmentPortfolioBusinessRules
+            IInvestmentPortfolioBusinessRules investmentPortfolioBusinessRules
         )
         : IRequestHandler<UpdateInvestmentPortfolioCommand,
             UpdateInvestmentPortfolioResponse>

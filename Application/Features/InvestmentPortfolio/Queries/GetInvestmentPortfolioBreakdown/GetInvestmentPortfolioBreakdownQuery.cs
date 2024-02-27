@@ -22,8 +22,7 @@ public class GetInvestmentPortfolioBreakdownQuery : IRequest<GetInvestmentPortfo
 
 
     public class GetUserBreakdownQueryHandler(
-        IInvestmentPortfolioRepository investmentPortfolioRepository,
-        IMapper mapper)
+        IInvestmentPortfolioRepository investmentPortfolioRepository)
         : IRequestHandler<GetInvestmentPortfolioBreakdownQuery,
             GetInvestmentPortfolioBreakdownResponse>
     {

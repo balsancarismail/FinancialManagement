@@ -28,7 +28,7 @@ public class DeleteInvestmentPortfolioCommand : IRequest<DeleteInvestmentPortfol
         DeleteInvestmentPortfolioCommandHandler(
             IMapper mapper,
             IInvestmentPortfolioRepository investmentPortfolioRepository,
-            InvestmentPortfolioBusinessRules investmentPortfolioBusinessRules)
+            IInvestmentPortfolioBusinessRules investmentPortfolioBusinessRules)
         : IRequestHandler<DeleteInvestmentPortfolioCommand,
             DeleteInvestmentPortfolioResponse>
     {

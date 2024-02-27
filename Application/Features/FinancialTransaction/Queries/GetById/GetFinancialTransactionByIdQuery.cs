@@ -24,7 +24,7 @@ public class GetFinancialTransactionByIdQuery : IRequest<GetFinancialTransaction
     public class GetFinancialTransactionByIdQueryHandler(
         IFinancialTransactionRepository financialTransactionRepository,
         IMapper mapper,
-        FinancialTransactionBusinessRules financialTransactionBusinessRules)
+        IFinancialTransactionBusinessRules financialTransactionBusinessRules)
         : IRequestHandler<GetFinancialTransactionByIdQuery, GetFinancialTransactionByIdResponse>
     {
         public async Task<GetFinancialTransactionByIdResponse> Handle(GetFinancialTransactionByIdQuery request,

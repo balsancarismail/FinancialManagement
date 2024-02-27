@@ -24,7 +24,7 @@ public class GetBudgetCategoryByIdQuery : IRequest<GetBudgetCategoryByIdResponse
         GetBudgetCategoryByIdQueryHandler(
             IBudgetCategoryRepository budgetCategoryRepository,
             IMapper mapper,
-            BudgetCategoryBusinessRules budgetCategoryBusinessRules)
+            IBudgetCategoryBusinessRules budgetCategoryBusinessRules)
         : IRequestHandler<GetBudgetCategoryByIdQuery, GetBudgetCategoryByIdResponse>
     {
         public async Task<GetBudgetCategoryByIdResponse> Handle(GetBudgetCategoryByIdQuery request,

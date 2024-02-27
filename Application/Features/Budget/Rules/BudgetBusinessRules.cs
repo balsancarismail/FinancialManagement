@@ -5,7 +5,7 @@ using Core.Persistence.Paging;
 
 namespace Application.Features.Budget.Rules;
 
-public class BudgetBusinessRules(IBudgetRepository budgetRepository)
+public class BudgetBusinessRules(IBudgetRepository budgetRepository) : IBudgetBusinessRules
 {
     public async Task IsBudgetExists(int id, CancellationToken cancellationToken)
     {

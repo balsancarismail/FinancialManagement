@@ -42,8 +42,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Budget\Queries\GetList\" />
-    <Folder Include="Features\Budget\Rules\" />
-    <Folder Include="Features\InvestmentPortfolio\Rules\" />
     <Folder Include="Services\CategoryService\" />
   </ItemGroup>
 

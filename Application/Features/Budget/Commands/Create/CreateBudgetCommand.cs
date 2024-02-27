@@ -33,7 +33,6 @@ public class CreateBudgetCommand : IRequest<CreateBudgetResponse>, ICacheRemover
         IMapper mapper,
         IBudgetRepository budgetRepository,
         IHttpContextAccessor httpContextAccessor,
-        BudgetBusinessRules budgetBusinessRules,
         UserManager<AppUser> userManager) : IRequestHandler<CreateBudgetCommand, CreateBudgetResponse>
     {
         private readonly string emailSchema = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress";

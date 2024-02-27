@@ -29,7 +29,7 @@ public class DeleteFinancialTransactionCommand : IRequest<DeleteFinancialTransac
         DeleteFinancialTransactionCommandHandler(
             IMapper mapper,
             IFinancialTransactionRepository financialTransactionRepository,
-            FinancialTransactionBusinessRules financialTransactionBusinessRules)
+            IFinancialTransactionBusinessRules financialTransactionBusinessRules)
         : IRequestHandler<DeleteFinancialTransactionCommand,
             DeleteFinancialTransactionResponse>
     {

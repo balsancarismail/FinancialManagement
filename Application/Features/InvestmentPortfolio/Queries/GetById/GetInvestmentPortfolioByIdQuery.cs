@@ -25,7 +25,7 @@ public class GetInvestmentPortfolioByIdQuery : IRequest<GetInvestmentPortfolioBy
         GetInvestmentPortfolioByIdQueryHandler(
             IInvestmentPortfolioRepository investmentPortfolioRepository,
             IMapper mapper,
-            InvestmentPortfolioBusinessRules investmentPortfolioBusinessRules)
+            IInvestmentPortfolioBusinessRules investmentPortfolioBusinessRules)
         : IRequestHandler<GetInvestmentPortfolioByIdQuery,
             GetInvestmentPortfolioByIdResponse>
     {
