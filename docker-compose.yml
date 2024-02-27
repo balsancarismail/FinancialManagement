@@ -1,6 +1,6 @@
 services:
   webapp:
-    build: "snc22bx7/financial-management"
+    image: "snc22bx7/financial-management:1930404"
     ports:
       - "8080:8080"
       - "8081:8081"
