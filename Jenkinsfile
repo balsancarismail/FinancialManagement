@@ -24,6 +24,18 @@ pipeline {
                 }
             }
         }
+        // Unit Test Stage
+        stage('Run Unit Tests') {
+            steps {
+                script {
+                    docker.image('mcr.microsoft.com/dotnet/nightly/sdk:8.0').inside {
+                        // Varsayılan olarak, test projesinin dizinine gitmeniz gerekebilir
+                        // sh 'cd YourTestProjectDirectory'
+                        sh 'dotnet test --logger "trx;LogFileName=unit_tests_results.xml"'
+                    }
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
